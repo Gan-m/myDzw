@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.StateMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.State" >
+    <id column="stateid" property="stateid" jdbcType="INTEGER" />
+    <result column="statename" property="statename" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    stateid, statename
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from state
+    where stateid = #{stateid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from state
+    where stateid = #{stateid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.State" >
+    insert into state (stateid, statename)
+    values (#{stateid,jdbcType=INTEGER}, #{statename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.State" >
+    insert into state
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stateid != null" >
+        stateid,
+      </if>
+      <if test="statename != null" >
+        statename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stateid != null" >
+        #{stateid,jdbcType=INTEGER},
+      </if>
+      <if test="statename != null" >
+        #{statename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.State" >
+    update state
+    <set >
+      <if test="statename != null" >
+        statename = #{statename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where stateid = #{stateid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.State" >
+    update state
+    set statename = #{statename,jdbcType=VARCHAR}
+    where stateid = #{stateid,jdbcType=INTEGER}
+  </update>
+</mapper>

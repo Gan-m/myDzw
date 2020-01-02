@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.FirmMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Firm" >
+    <id column="firmno" property="firmno" jdbcType="VARCHAR" />
+    <result column="cityid" property="cityid" jdbcType="INTEGER" />
+    <result column="firmname" property="firmname" jdbcType="VARCHAR" />
+    <result column="firmaddress" property="firmaddress" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="gsphone" property="gsphone" jdbcType="VARCHAR" />
+    <result column="lxr" property="lxr" jdbcType="VARCHAR" />
+    <result column="lxrphone" property="lxrphone" jdbcType="VARCHAR" />
+    <result column="scity" property="scity" jdbcType="VARCHAR" />
+    <result column="firmsevenst" property="firmsevenst" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    firmno, cityid, firmname, firmaddress, url, gsphone, lxr, lxrphone, scity, firmsevenst
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from firm
+    where firmno = #{firmno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from firm
+    where firmno = #{firmno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Firm" >
+    insert into firm (firmno, cityid, firmname, 
+      firmaddress, url, gsphone, 
+      lxr, lxrphone, scity, 
+      firmsevenst)
+    values (#{firmno,jdbcType=VARCHAR}, #{cityid,jdbcType=INTEGER}, #{firmname,jdbcType=VARCHAR}, 
+      #{firmaddress,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{gsphone,jdbcType=VARCHAR}, 
+      #{lxr,jdbcType=VARCHAR}, #{lxrphone,jdbcType=VARCHAR}, #{scity,jdbcType=VARCHAR}, 
+      #{firmsevenst,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Firm" >
+    insert into firm
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="firmno != null" >
+        firmno,
+      </if>
+      <if test="cityid != null" >
+        cityid,
+      </if>
+      <if test="firmname != null" >
+        firmname,
+      </if>
+      <if test="firmaddress != null" >
+        firmaddress,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="gsphone != null" >
+        gsphone,
+      </if>
+      <if test="lxr != null" >
+        lxr,
+      </if>
+      <if test="lxrphone != null" >
+        lxrphone,
+      </if>
+      <if test="scity != null" >
+        scity,
+      </if>
+      <if test="firmsevenst != null" >
+        firmsevenst,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="firmno != null" >
+        #{firmno,jdbcType=VARCHAR},
+      </if>
+      <if test="cityid != null" >
+        #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="firmname != null" >
+        #{firmname,jdbcType=VARCHAR},
+      </if>
+      <if test="firmaddress != null" >
+        #{firmaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="gsphone != null" >
+        #{gsphone,jdbcType=VARCHAR},
+      </if>
+      <if test="lxr != null" >
+        #{lxr,jdbcType=VARCHAR},
+      </if>
+      <if test="lxrphone != null" >
+        #{lxrphone,jdbcType=VARCHAR},
+      </if>
+      <if test="scity != null" >
+        #{scity,jdbcType=VARCHAR},
+      </if>
+      <if test="firmsevenst != null" >
+        #{firmsevenst,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Firm" >
+    update firm
+    <set >
+      <if test="cityid != null" >
+        cityid = #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="firmname != null" >
+        firmname = #{firmname,jdbcType=VARCHAR},
+      </if>
+      <if test="firmaddress != null" >
+        firmaddress = #{firmaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="gsphone != null" >
+        gsphone = #{gsphone,jdbcType=VARCHAR},
+      </if>
+      <if test="lxr != null" >
+        lxr = #{lxr,jdbcType=VARCHAR},
+      </if>
+      <if test="lxrphone != null" >
+        lxrphone = #{lxrphone,jdbcType=VARCHAR},
+      </if>
+      <if test="scity != null" >
+        scity = #{scity,jdbcType=VARCHAR},
+      </if>
+      <if test="firmsevenst != null" >
+        firmsevenst = #{firmsevenst,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where firmno = #{firmno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Firm" >
+    update firm
+    set cityid = #{cityid,jdbcType=INTEGER},
+      firmname = #{firmname,jdbcType=VARCHAR},
+      firmaddress = #{firmaddress,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      gsphone = #{gsphone,jdbcType=VARCHAR},
+      lxr = #{lxr,jdbcType=VARCHAR},
+      lxrphone = #{lxrphone,jdbcType=VARCHAR},
+      scity = #{scity,jdbcType=VARCHAR},
+      firmsevenst = #{firmsevenst,jdbcType=VARCHAR}
+    where firmno = #{firmno,jdbcType=VARCHAR}
+  </update>
+</mapper>

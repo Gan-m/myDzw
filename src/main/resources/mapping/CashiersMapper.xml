@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.CashiersMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Cashiers" >
+    <id column="casid" property="casid" jdbcType="INTEGER" />
+    <result column="insid" property="insid" jdbcType="INTEGER" />
+    <result column="cashiersprice" property="cashiersprice" jdbcType="REAL" />
+    <result column="shijprice" property="shijprice" jdbcType="REAL" />
+    <result column="paymenttemp" property="paymenttemp" jdbcType="VARCHAR" />
+    <result column="jfdk" property="jfdk" jdbcType="REAL" />
+    <result column="cashierstimes" property="cashierstimes" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    casid, insid, cashiersprice, shijprice, paymenttemp, jfdk, cashierstimes
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cashiers
+    where casid = #{casid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cashiers
+    where casid = #{casid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Cashiers" >
+    insert into cashiers (casid, insid, cashiersprice, 
+      shijprice, paymenttemp, jfdk, 
+      cashierstimes)
+    values (#{casid,jdbcType=INTEGER}, #{insid,jdbcType=INTEGER}, #{cashiersprice,jdbcType=REAL}, 
+      #{shijprice,jdbcType=REAL}, #{paymenttemp,jdbcType=VARCHAR}, #{jfdk,jdbcType=REAL}, 
+      #{cashierstimes,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Cashiers" >
+    insert into cashiers
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="casid != null" >
+        casid,
+      </if>
+      <if test="insid != null" >
+        insid,
+      </if>
+      <if test="cashiersprice != null" >
+        cashiersprice,
+      </if>
+      <if test="shijprice != null" >
+        shijprice,
+      </if>
+      <if test="paymenttemp != null" >
+        paymenttemp,
+      </if>
+      <if test="jfdk != null" >
+        jfdk,
+      </if>
+      <if test="cashierstimes != null" >
+        cashierstimes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="casid != null" >
+        #{casid,jdbcType=INTEGER},
+      </if>
+      <if test="insid != null" >
+        #{insid,jdbcType=INTEGER},
+      </if>
+      <if test="cashiersprice != null" >
+        #{cashiersprice,jdbcType=REAL},
+      </if>
+      <if test="shijprice != null" >
+        #{shijprice,jdbcType=REAL},
+      </if>
+      <if test="paymenttemp != null" >
+        #{paymenttemp,jdbcType=VARCHAR},
+      </if>
+      <if test="jfdk != null" >
+        #{jfdk,jdbcType=REAL},
+      </if>
+      <if test="cashierstimes != null" >
+        #{cashierstimes,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Cashiers" >
+    update cashiers
+    <set >
+      <if test="insid != null" >
+        insid = #{insid,jdbcType=INTEGER},
+      </if>
+      <if test="cashiersprice != null" >
+        cashiersprice = #{cashiersprice,jdbcType=REAL},
+      </if>
+      <if test="shijprice != null" >
+        shijprice = #{shijprice,jdbcType=REAL},
+      </if>
+      <if test="paymenttemp != null" >
+        paymenttemp = #{paymenttemp,jdbcType=VARCHAR},
+      </if>
+      <if test="jfdk != null" >
+        jfdk = #{jfdk,jdbcType=REAL},
+      </if>
+      <if test="cashierstimes != null" >
+        cashierstimes = #{cashierstimes,jdbcType=DATE},
+      </if>
+    </set>
+    where casid = #{casid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Cashiers" >
+    update cashiers
+    set insid = #{insid,jdbcType=INTEGER},
+      cashiersprice = #{cashiersprice,jdbcType=REAL},
+      shijprice = #{shijprice,jdbcType=REAL},
+      paymenttemp = #{paymenttemp,jdbcType=VARCHAR},
+      jfdk = #{jfdk,jdbcType=REAL},
+      cashierstimes = #{cashierstimes,jdbcType=DATE}
+    where casid = #{casid,jdbcType=INTEGER}
+  </update>
+</mapper>

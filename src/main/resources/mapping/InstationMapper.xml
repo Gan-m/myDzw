@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.InstationMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Instation" >
+    <id column="insid" property="insid" jdbcType="INTEGER" />
+    <result column="wxstateid" property="wxstateid" jdbcType="INTEGER" />
+    <result column="artisanid" property="artisanid" jdbcType="VARCHAR" />
+    <result column="ctsid" property="ctsid" jdbcType="INTEGER" />
+    <result column="instation" property="instation" jdbcType="VARCHAR" />
+    <result column="jsyuan" property="jsyuan" jdbcType="VARCHAR" />
+    <result column="joininstimes" property="joininstimes" jdbcType="DATE" />
+    <result column="predictcompletetime" property="predictcompletetime" jdbcType="DATE" />
+    <result column="predicttime" property="predicttime" jdbcType="DATE" />
+    <result column="budgetmoney" property="budgetmoney" jdbcType="REAL" />
+    <result column="insevent" property="insevent" jdbcType="VARCHAR" />
+    <result column="iszn" property="iszn" jdbcType="BIT" />
+    <result column="ifjs" property="ifjs" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    insid, wxstateid, artisanid, ctsid, instation, jsyuan, joininstimes, predictcompletetime, 
+    predicttime, budgetmoney, insevent, iszn, ifjs
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from instation
+    where insid = #{insid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from instation
+    where insid = #{insid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Instation" >
+    insert into instation (insid, wxstateid, artisanid, 
+      ctsid, instation, jsyuan, 
+      joininstimes, predictcompletetime, predicttime, 
+      budgetmoney, insevent, iszn, 
+      ifjs)
+    values (#{insid,jdbcType=INTEGER}, #{wxstateid,jdbcType=INTEGER}, #{artisanid,jdbcType=VARCHAR}, 
+      #{ctsid,jdbcType=INTEGER}, #{instation,jdbcType=VARCHAR}, #{jsyuan,jdbcType=VARCHAR}, 
+      #{joininstimes,jdbcType=DATE}, #{predictcompletetime,jdbcType=DATE}, #{predicttime,jdbcType=DATE}, 
+      #{budgetmoney,jdbcType=REAL}, #{insevent,jdbcType=VARCHAR}, #{iszn,jdbcType=BIT}, 
+      #{ifjs,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Instation" >
+    insert into instation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="insid != null" >
+        insid,
+      </if>
+      <if test="wxstateid != null" >
+        wxstateid,
+      </if>
+      <if test="artisanid != null" >
+        artisanid,
+      </if>
+      <if test="ctsid != null" >
+        ctsid,
+      </if>
+      <if test="instation != null" >
+        instation,
+      </if>
+      <if test="jsyuan != null" >
+        jsyuan,
+      </if>
+      <if test="joininstimes != null" >
+        joininstimes,
+      </if>
+      <if test="predictcompletetime != null" >
+        predictcompletetime,
+      </if>
+      <if test="predicttime != null" >
+        predicttime,
+      </if>
+      <if test="budgetmoney != null" >
+        budgetmoney,
+      </if>
+      <if test="insevent != null" >
+        insevent,
+      </if>
+      <if test="iszn != null" >
+        iszn,
+      </if>
+      <if test="ifjs != null" >
+        ifjs,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="insid != null" >
+        #{insid,jdbcType=INTEGER},
+      </if>
+      <if test="wxstateid != null" >
+        #{wxstateid,jdbcType=INTEGER},
+      </if>
+      <if test="artisanid != null" >
+        #{artisanid,jdbcType=VARCHAR},
+      </if>
+      <if test="ctsid != null" >
+        #{ctsid,jdbcType=INTEGER},
+      </if>
+      <if test="instation != null" >
+        #{instation,jdbcType=VARCHAR},
+      </if>
+      <if test="jsyuan != null" >
+        #{jsyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="joininstimes != null" >
+        #{joininstimes,jdbcType=DATE},
+      </if>
+      <if test="predictcompletetime != null" >
+        #{predictcompletetime,jdbcType=DATE},
+      </if>
+      <if test="predicttime != null" >
+        #{predicttime,jdbcType=DATE},
+      </if>
+      <if test="budgetmoney != null" >
+        #{budgetmoney,jdbcType=REAL},
+      </if>
+      <if test="insevent != null" >
+        #{insevent,jdbcType=VARCHAR},
+      </if>
+      <if test="iszn != null" >
+        #{iszn,jdbcType=BIT},
+      </if>
+      <if test="ifjs != null" >
+        #{ifjs,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Instation" >
+    update instation
+    <set >
+      <if test="wxstateid != null" >
+        wxstateid = #{wxstateid,jdbcType=INTEGER},
+      </if>
+      <if test="artisanid != null" >
+        artisanid = #{artisanid,jdbcType=VARCHAR},
+      </if>
+      <if test="ctsid != null" >
+        ctsid = #{ctsid,jdbcType=INTEGER},
+      </if>
+      <if test="instation != null" >
+        instation = #{instation,jdbcType=VARCHAR},
+      </if>
+      <if test="jsyuan != null" >
+        jsyuan = #{jsyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="joininstimes != null" >
+        joininstimes = #{joininstimes,jdbcType=DATE},
+      </if>
+      <if test="predictcompletetime != null" >
+        predictcompletetime = #{predictcompletetime,jdbcType=DATE},
+      </if>
+      <if test="predicttime != null" >
+        predicttime = #{predicttime,jdbcType=DATE},
+      </if>
+      <if test="budgetmoney != null" >
+        budgetmoney = #{budgetmoney,jdbcType=REAL},
+      </if>
+      <if test="insevent != null" >
+        insevent = #{insevent,jdbcType=VARCHAR},
+      </if>
+      <if test="iszn != null" >
+        iszn = #{iszn,jdbcType=BIT},
+      </if>
+      <if test="ifjs != null" >
+        ifjs = #{ifjs,jdbcType=BIT},
+      </if>
+    </set>
+    where insid = #{insid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Instation" >
+    update instation
+    set wxstateid = #{wxstateid,jdbcType=INTEGER},
+      artisanid = #{artisanid,jdbcType=VARCHAR},
+      ctsid = #{ctsid,jdbcType=INTEGER},
+      instation = #{instation,jdbcType=VARCHAR},
+      jsyuan = #{jsyuan,jdbcType=VARCHAR},
+      joininstimes = #{joininstimes,jdbcType=DATE},
+      predictcompletetime = #{predictcompletetime,jdbcType=DATE},
+      predicttime = #{predicttime,jdbcType=DATE},
+      budgetmoney = #{budgetmoney,jdbcType=REAL},
+      insevent = #{insevent,jdbcType=VARCHAR},
+      iszn = #{iszn,jdbcType=BIT},
+      ifjs = #{ifjs,jdbcType=BIT}
+    where insid = #{insid,jdbcType=INTEGER}
+  </update>
+</mapper>

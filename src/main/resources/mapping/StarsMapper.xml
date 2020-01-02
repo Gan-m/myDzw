@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.StarsMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Stars" >
+    <id column="starsid" property="starsid" jdbcType="INTEGER" />
+    <result column="starsname" property="starsname" jdbcType="VARCHAR" />
+    <result column="starsprices" property="starsprices" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    starsid, starsname, starsprices
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from stars
+    where starsid = #{starsid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from stars
+    where starsid = #{starsid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Stars" >
+    insert into stars (starsid, starsname, starsprices
+      )
+    values (#{starsid,jdbcType=INTEGER}, #{starsname,jdbcType=VARCHAR}, #{starsprices,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Stars" >
+    insert into stars
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="starsid != null" >
+        starsid,
+      </if>
+      <if test="starsname != null" >
+        starsname,
+      </if>
+      <if test="starsprices != null" >
+        starsprices,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="starsid != null" >
+        #{starsid,jdbcType=INTEGER},
+      </if>
+      <if test="starsname != null" >
+        #{starsname,jdbcType=VARCHAR},
+      </if>
+      <if test="starsprices != null" >
+        #{starsprices,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Stars" >
+    update stars
+    <set >
+      <if test="starsname != null" >
+        starsname = #{starsname,jdbcType=VARCHAR},
+      </if>
+      <if test="starsprices != null" >
+        starsprices = #{starsprices,jdbcType=REAL},
+      </if>
+    </set>
+    where starsid = #{starsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Stars" >
+    update stars
+    set starsname = #{starsname,jdbcType=VARCHAR},
+      starsprices = #{starsprices,jdbcType=REAL}
+    where starsid = #{starsid,jdbcType=INTEGER}
+  </update>
+</mapper>

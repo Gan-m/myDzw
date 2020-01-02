@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.UnitMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Unit" >
+    <id column="unitid" property="unitid" jdbcType="INTEGER" />
+    <result column="unitname" property="unitname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    unitid, unitname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from unit
+    where unitid = #{unitid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from unit
+    where unitid = #{unitid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Unit" >
+    insert into unit (unitid, unitname)
+    values (#{unitid,jdbcType=INTEGER}, #{unitname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Unit" >
+    insert into unit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="unitid != null" >
+        unitid,
+      </if>
+      <if test="unitname != null" >
+        unitname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="unitid != null" >
+        #{unitid,jdbcType=INTEGER},
+      </if>
+      <if test="unitname != null" >
+        #{unitname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Unit" >
+    update unit
+    <set >
+      <if test="unitname != null" >
+        unitname = #{unitname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where unitid = #{unitid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Unit" >
+    update unit
+    set unitname = #{unitname,jdbcType=VARCHAR}
+    where unitid = #{unitid,jdbcType=INTEGER}
+  </update>
+</mapper>

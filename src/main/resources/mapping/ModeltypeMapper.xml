@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.ModeltypeMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Modeltype" >
+    <id column="cartypeid" property="cartypeid" jdbcType="VARCHAR" />
+    <result column="engineid" property="engineid" jdbcType="INTEGER" />
+    <result column="ctsid" property="ctsid" jdbcType="INTEGER" />
+    <result column="cartypename" property="cartypename" jdbcType="VARCHAR" />
+    <result column="ckprice" property="ckprice" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cartypeid, engineid, ctsid, cartypename, ckprice
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from modeltype
+    where cartypeid = #{cartypeid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from modeltype
+    where cartypeid = #{cartypeid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Modeltype" >
+    insert into modeltype (cartypeid, engineid, ctsid, 
+      cartypename, ckprice)
+    values (#{cartypeid,jdbcType=VARCHAR}, #{engineid,jdbcType=INTEGER}, #{ctsid,jdbcType=INTEGER}, 
+      #{cartypename,jdbcType=VARCHAR}, #{ckprice,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Modeltype" >
+    insert into modeltype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cartypeid != null" >
+        cartypeid,
+      </if>
+      <if test="engineid != null" >
+        engineid,
+      </if>
+      <if test="ctsid != null" >
+        ctsid,
+      </if>
+      <if test="cartypename != null" >
+        cartypename,
+      </if>
+      <if test="ckprice != null" >
+        ckprice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cartypeid != null" >
+        #{cartypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="engineid != null" >
+        #{engineid,jdbcType=INTEGER},
+      </if>
+      <if test="ctsid != null" >
+        #{ctsid,jdbcType=INTEGER},
+      </if>
+      <if test="cartypename != null" >
+        #{cartypename,jdbcType=VARCHAR},
+      </if>
+      <if test="ckprice != null" >
+        #{ckprice,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Modeltype" >
+    update modeltype
+    <set >
+      <if test="engineid != null" >
+        engineid = #{engineid,jdbcType=INTEGER},
+      </if>
+      <if test="ctsid != null" >
+        ctsid = #{ctsid,jdbcType=INTEGER},
+      </if>
+      <if test="cartypename != null" >
+        cartypename = #{cartypename,jdbcType=VARCHAR},
+      </if>
+      <if test="ckprice != null" >
+        ckprice = #{ckprice,jdbcType=REAL},
+      </if>
+    </set>
+    where cartypeid = #{cartypeid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Modeltype" >
+    update modeltype
+    set engineid = #{engineid,jdbcType=INTEGER},
+      ctsid = #{ctsid,jdbcType=INTEGER},
+      cartypename = #{cartypename,jdbcType=VARCHAR},
+      ckprice = #{ckprice,jdbcType=REAL}
+    where cartypeid = #{cartypeid,jdbcType=VARCHAR}
+  </update>
+</mapper>

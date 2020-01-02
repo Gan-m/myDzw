@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.JyjcMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Jyjc" >
+    <id column="jyid" property="jyid" jdbcType="INTEGER" />
+    <result column="teamid" property="teamid" jdbcType="INTEGER" />
+    <result column="insid" property="insid" jdbcType="INTEGER" />
+    <result column="nilc" property="nilc" jdbcType="INTEGER" />
+    <result column="pgtime" property="pgtime" jdbcType="DATE" />
+    <result column="gototime" property="gototime" jdbcType="DATE" />
+    <result column="gotoaddress" property="gotoaddress" jdbcType="VARCHAR" />
+    <result column="dotime" property="dotime" jdbcType="DATE" />
+    <result column="doaddress" property="doaddress" jdbcType="VARCHAR" />
+    <result column="overtime" property="overtime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    jyid, teamid, insid, nilc, pgtime, gototime, gotoaddress, dotime, doaddress, overtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from jyjc
+    where jyid = #{jyid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from jyjc
+    where jyid = #{jyid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Jyjc" >
+    insert into jyjc (jyid, teamid, insid, 
+      nilc, pgtime, gototime, gotoaddress, 
+      dotime, doaddress, overtime
+      )
+    values (#{jyid,jdbcType=INTEGER}, #{teamid,jdbcType=INTEGER}, #{insid,jdbcType=INTEGER}, 
+      #{nilc,jdbcType=INTEGER}, #{pgtime,jdbcType=DATE}, #{gototime,jdbcType=DATE}, #{gotoaddress,jdbcType=VARCHAR}, 
+      #{dotime,jdbcType=DATE}, #{doaddress,jdbcType=VARCHAR}, #{overtime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Jyjc" >
+    insert into jyjc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="jyid != null" >
+        jyid,
+      </if>
+      <if test="teamid != null" >
+        teamid,
+      </if>
+      <if test="insid != null" >
+        insid,
+      </if>
+      <if test="nilc != null" >
+        nilc,
+      </if>
+      <if test="pgtime != null" >
+        pgtime,
+      </if>
+      <if test="gototime != null" >
+        gototime,
+      </if>
+      <if test="gotoaddress != null" >
+        gotoaddress,
+      </if>
+      <if test="dotime != null" >
+        dotime,
+      </if>
+      <if test="doaddress != null" >
+        doaddress,
+      </if>
+      <if test="overtime != null" >
+        overtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="jyid != null" >
+        #{jyid,jdbcType=INTEGER},
+      </if>
+      <if test="teamid != null" >
+        #{teamid,jdbcType=INTEGER},
+      </if>
+      <if test="insid != null" >
+        #{insid,jdbcType=INTEGER},
+      </if>
+      <if test="nilc != null" >
+        #{nilc,jdbcType=INTEGER},
+      </if>
+      <if test="pgtime != null" >
+        #{pgtime,jdbcType=DATE},
+      </if>
+      <if test="gototime != null" >
+        #{gototime,jdbcType=DATE},
+      </if>
+      <if test="gotoaddress != null" >
+        #{gotoaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="dotime != null" >
+        #{dotime,jdbcType=DATE},
+      </if>
+      <if test="doaddress != null" >
+        #{doaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="overtime != null" >
+        #{overtime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Jyjc" >
+    update jyjc
+    <set >
+      <if test="teamid != null" >
+        teamid = #{teamid,jdbcType=INTEGER},
+      </if>
+      <if test="insid != null" >
+        insid = #{insid,jdbcType=INTEGER},
+      </if>
+      <if test="nilc != null" >
+        nilc = #{nilc,jdbcType=INTEGER},
+      </if>
+      <if test="pgtime != null" >
+        pgtime = #{pgtime,jdbcType=DATE},
+      </if>
+      <if test="gototime != null" >
+        gototime = #{gototime,jdbcType=DATE},
+      </if>
+      <if test="gotoaddress != null" >
+        gotoaddress = #{gotoaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="dotime != null" >
+        dotime = #{dotime,jdbcType=DATE},
+      </if>
+      <if test="doaddress != null" >
+        doaddress = #{doaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="overtime != null" >
+        overtime = #{overtime,jdbcType=DATE},
+      </if>
+    </set>
+    where jyid = #{jyid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Jyjc" >
+    update jyjc
+    set teamid = #{teamid,jdbcType=INTEGER},
+      insid = #{insid,jdbcType=INTEGER},
+      nilc = #{nilc,jdbcType=INTEGER},
+      pgtime = #{pgtime,jdbcType=DATE},
+      gototime = #{gototime,jdbcType=DATE},
+      gotoaddress = #{gotoaddress,jdbcType=VARCHAR},
+      dotime = #{dotime,jdbcType=DATE},
+      doaddress = #{doaddress,jdbcType=VARCHAR},
+      overtime = #{overtime,jdbcType=DATE}
+    where jyid = #{jyid,jdbcType=INTEGER}
+  </update>
+</mapper>

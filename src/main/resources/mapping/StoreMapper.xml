@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.StoreMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Store" >
+    <id column="storeid" property="storeid" jdbcType="VARCHAR" />
+    <result column="storenames" property="storenames" jdbcType="VARCHAR" />
+    <result column="clicity" property="clicity" jdbcType="VARCHAR" />
+    <result column="storeaddress" property="storeaddress" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    storeid, storenames, clicity, storeaddress
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from store
+    where storeid = #{storeid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from store
+    where storeid = #{storeid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Store" >
+    insert into store (storeid, storenames, clicity, 
+      storeaddress)
+    values (#{storeid,jdbcType=VARCHAR}, #{storenames,jdbcType=VARCHAR}, #{clicity,jdbcType=VARCHAR}, 
+      #{storeaddress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Store" >
+    insert into store
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="storeid != null" >
+        storeid,
+      </if>
+      <if test="storenames != null" >
+        storenames,
+      </if>
+      <if test="clicity != null" >
+        clicity,
+      </if>
+      <if test="storeaddress != null" >
+        storeaddress,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="storeid != null" >
+        #{storeid,jdbcType=VARCHAR},
+      </if>
+      <if test="storenames != null" >
+        #{storenames,jdbcType=VARCHAR},
+      </if>
+      <if test="clicity != null" >
+        #{clicity,jdbcType=VARCHAR},
+      </if>
+      <if test="storeaddress != null" >
+        #{storeaddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Store" >
+    update store
+    <set >
+      <if test="storenames != null" >
+        storenames = #{storenames,jdbcType=VARCHAR},
+      </if>
+      <if test="clicity != null" >
+        clicity = #{clicity,jdbcType=VARCHAR},
+      </if>
+      <if test="storeaddress != null" >
+        storeaddress = #{storeaddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where storeid = #{storeid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Store" >
+    update store
+    set storenames = #{storenames,jdbcType=VARCHAR},
+      clicity = #{clicity,jdbcType=VARCHAR},
+      storeaddress = #{storeaddress,jdbcType=VARCHAR}
+    where storeid = #{storeid,jdbcType=VARCHAR}
+  </update>
+</mapper>

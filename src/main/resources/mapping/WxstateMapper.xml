@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.WxstateMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Wxstate" >
+    <id column="wxstateid" property="wxstateid" jdbcType="INTEGER" />
+    <result column="wxstatename" property="wxstatename" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    wxstateid, wxstatename
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from wxstate
+    where wxstateid = #{wxstateid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from wxstate
+    where wxstateid = #{wxstateid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Wxstate" >
+    insert into wxstate (wxstateid, wxstatename)
+    values (#{wxstateid,jdbcType=INTEGER}, #{wxstatename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Wxstate" >
+    insert into wxstate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wxstateid != null" >
+        wxstateid,
+      </if>
+      <if test="wxstatename != null" >
+        wxstatename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wxstateid != null" >
+        #{wxstateid,jdbcType=INTEGER},
+      </if>
+      <if test="wxstatename != null" >
+        #{wxstatename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Wxstate" >
+    update wxstate
+    <set >
+      <if test="wxstatename != null" >
+        wxstatename = #{wxstatename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where wxstateid = #{wxstateid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Wxstate" >
+    update wxstate
+    set wxstatename = #{wxstatename,jdbcType=VARCHAR}
+    where wxstateid = #{wxstateid,jdbcType=INTEGER}
+  </update>
+</mapper>

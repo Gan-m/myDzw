@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.WorkcarsMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Workcars" >
+    <id column="wid" property="wid" jdbcType="INTEGER" />
+    <result column="teamid" property="teamid" jdbcType="INTEGER" />
+    <result column="caid" property="caid" jdbcType="VARCHAR" />
+    <result column="carBrand" property="carbrand" jdbcType="VARCHAR" />
+    <result column="carType" property="cartype" jdbcType="VARCHAR" />
+    <result column="clic" property="clic" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    wid, teamid, caid, carBrand, carType, clic
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from workcars
+    where wid = #{wid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from workcars
+    where wid = #{wid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Workcars" >
+    insert into workcars (wid, teamid, caid, 
+      carBrand, carType, clic
+      )
+    values (#{wid,jdbcType=INTEGER}, #{teamid,jdbcType=INTEGER}, #{caid,jdbcType=VARCHAR}, 
+      #{carbrand,jdbcType=VARCHAR}, #{cartype,jdbcType=VARCHAR}, #{clic,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Workcars" >
+    insert into workcars
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wid != null" >
+        wid,
+      </if>
+      <if test="teamid != null" >
+        teamid,
+      </if>
+      <if test="caid != null" >
+        caid,
+      </if>
+      <if test="carbrand != null" >
+        carBrand,
+      </if>
+      <if test="cartype != null" >
+        carType,
+      </if>
+      <if test="clic != null" >
+        clic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wid != null" >
+        #{wid,jdbcType=INTEGER},
+      </if>
+      <if test="teamid != null" >
+        #{teamid,jdbcType=INTEGER},
+      </if>
+      <if test="caid != null" >
+        #{caid,jdbcType=VARCHAR},
+      </if>
+      <if test="carbrand != null" >
+        #{carbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null" >
+        #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="clic != null" >
+        #{clic,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Workcars" >
+    update workcars
+    <set >
+      <if test="teamid != null" >
+        teamid = #{teamid,jdbcType=INTEGER},
+      </if>
+      <if test="caid != null" >
+        caid = #{caid,jdbcType=VARCHAR},
+      </if>
+      <if test="carbrand != null" >
+        carBrand = #{carbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null" >
+        carType = #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="clic != null" >
+        clic = #{clic,jdbcType=INTEGER},
+      </if>
+    </set>
+    where wid = #{wid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Workcars" >
+    update workcars
+    set teamid = #{teamid,jdbcType=INTEGER},
+      caid = #{caid,jdbcType=VARCHAR},
+      carBrand = #{carbrand,jdbcType=VARCHAR},
+      carType = #{cartype,jdbcType=VARCHAR},
+      clic = #{clic,jdbcType=INTEGER}
+    where wid = #{wid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
+<generatorConfiguration>  
+    <context id="mySqlTables"  targetRuntime="MyBatis3">  
+        <commentGenerator>  
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>  
+        </commentGenerator>  
+        <!--数据库链接URL，用户名、密码 -->  
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/dxwqx" userId="root" password="123">
+        </jdbcConnection>
+        <javaTypeResolver>  
+            <property name="forceBigDecimals" value="false"/>  
+        </javaTypeResolver>  
+        <!--pojo生成位置-->  
+        <javaModelGenerator targetPackage="com.accp.pojo" targetProject="src/main/java">  
+            <property name="enableSubPackages" value="true"/>  
+            <property name="trimStrings" value="true"/>  
+        </javaModelGenerator>  
+        <!--映射文件生成位置-->  
+        <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources">  
+            <property name="enableSubPackages" value="true"/>  
+        </sqlMapGenerator>  
+        <!--dao生成位置-->  
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.accp.dao" targetProject="src/main/java">  
+            <property name="enableSubPackages" value="true"/>  
+        </javaClientGenerator>  
+        <!-- 
+		tableName是数据库中的表名或视图名
+		domainObjectName是实体类名
+		-->  
+        <table tableName="artisan" domainObjectName="Artisan" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="cartypes" domainObjectName="Cartypes" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="cashiers" domainObjectName="Cashiers" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="CLIENT" domainObjectName="Cient" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="clientcar" domainObjectName="Clientcar" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="department" domainObjectName="Department" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="dimission" domainObjectName="Dimission" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="employee" domainObjectName="Employee" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="ENGINE" domainObjectName="Engine" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="firm" domainObjectName="Firm" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		 <table tableName="goodstype" domainObjectName="Goodstype" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="instation" domainObjectName="Instation" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="jyjc" domainObjectName="Jyjc" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="member" domainObjectName="Member" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="modeltype" domainObjectName="Modeltype" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="property" domainObjectName="Property" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="repair" domainObjectName="Repair" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="shop" domainObjectName="Shop" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="stars" domainObjectName="Stars" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="state" domainObjectName="State" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="store" domainObjectName="Store" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="team" domainObjectName="Team" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="unit" domainObjectName="Unit" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="viplist" domainObjectName="Viplist" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="workcars" domainObjectName="Workcars" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="wxstate" domainObjectName="Wxstate" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		<table tableName="wxxqd" domainObjectName="Wxxqd" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		
+		</context>  
+</generatorConfiguration>  

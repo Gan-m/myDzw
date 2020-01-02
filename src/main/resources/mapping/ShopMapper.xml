@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.ShopMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Shop" >
+    <id column="shopid" property="shopid" jdbcType="VARCHAR" />
+    <result column="firmno" property="firmno" jdbcType="VARCHAR" />
+    <result column="stateid" property="stateid" jdbcType="INTEGER" />
+    <result column="storeid" property="storeid" jdbcType="VARCHAR" />
+    <result column="unitid" property="unitid" jdbcType="INTEGER" />
+    <result column="gid" property="gid" jdbcType="INTEGER" />
+    <result column="shopname" property="shopname" jdbcType="VARCHAR" />
+    <result column="sBrand" property="sbrand" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="INTEGER" />
+    <result column="pictrueUrl" property="pictrueurl" jdbcType="VARCHAR" />
+    <result column="stockprice" property="stockprice" jdbcType="REAL" />
+    <result column="bjmoney" property="bjmoney" jdbcType="REAL" />
+    <result column="hymoney" property="hymoney" jdbcType="REAL" />
+    <result column="vipmoney" property="vipmoney" jdbcType="REAL" />
+    <result column="rxyprice" property="rxyprice" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    shopid, firmno, stateid, storeid, unitid, gid, shopname, sBrand, weight, pictrueUrl, 
+    stockprice, bjmoney, hymoney, vipmoney, rxyprice
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    where shopid = #{shopid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from shop
+    where shopid = #{shopid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Shop" >
+    insert into shop (shopid, firmno, stateid, 
+      storeid, unitid, gid, 
+      shopname, sBrand, weight, 
+      pictrueUrl, stockprice, bjmoney, 
+      hymoney, vipmoney, rxyprice)
+    values (#{shopid,jdbcType=VARCHAR}, #{firmno,jdbcType=VARCHAR}, #{stateid,jdbcType=INTEGER}, 
+      #{storeid,jdbcType=VARCHAR}, #{unitid,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}, 
+      #{shopname,jdbcType=VARCHAR}, #{sbrand,jdbcType=VARCHAR}, #{weight,jdbcType=INTEGER}, 
+      #{pictrueurl,jdbcType=VARCHAR}, #{stockprice,jdbcType=REAL}, #{bjmoney,jdbcType=REAL}, 
+      #{hymoney,jdbcType=REAL}, #{vipmoney,jdbcType=REAL}, #{rxyprice,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Shop" >
+    insert into shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shopid != null" >
+        shopid,
+      </if>
+      <if test="firmno != null" >
+        firmno,
+      </if>
+      <if test="stateid != null" >
+        stateid,
+      </if>
+      <if test="storeid != null" >
+        storeid,
+      </if>
+      <if test="unitid != null" >
+        unitid,
+      </if>
+      <if test="gid != null" >
+        gid,
+      </if>
+      <if test="shopname != null" >
+        shopname,
+      </if>
+      <if test="sbrand != null" >
+        sBrand,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="pictrueurl != null" >
+        pictrueUrl,
+      </if>
+      <if test="stockprice != null" >
+        stockprice,
+      </if>
+      <if test="bjmoney != null" >
+        bjmoney,
+      </if>
+      <if test="hymoney != null" >
+        hymoney,
+      </if>
+      <if test="vipmoney != null" >
+        vipmoney,
+      </if>
+      <if test="rxyprice != null" >
+        rxyprice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shopid != null" >
+        #{shopid,jdbcType=VARCHAR},
+      </if>
+      <if test="firmno != null" >
+        #{firmno,jdbcType=VARCHAR},
+      </if>
+      <if test="stateid != null" >
+        #{stateid,jdbcType=INTEGER},
+      </if>
+      <if test="storeid != null" >
+        #{storeid,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        #{unitid,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null" >
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="shopname != null" >
+        #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="sbrand != null" >
+        #{sbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="pictrueurl != null" >
+        #{pictrueurl,jdbcType=VARCHAR},
+      </if>
+      <if test="stockprice != null" >
+        #{stockprice,jdbcType=REAL},
+      </if>
+      <if test="bjmoney != null" >
+        #{bjmoney,jdbcType=REAL},
+      </if>
+      <if test="hymoney != null" >
+        #{hymoney,jdbcType=REAL},
+      </if>
+      <if test="vipmoney != null" >
+        #{vipmoney,jdbcType=REAL},
+      </if>
+      <if test="rxyprice != null" >
+        #{rxyprice,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Shop" >
+    update shop
+    <set >
+      <if test="firmno != null" >
+        firmno = #{firmno,jdbcType=VARCHAR},
+      </if>
+      <if test="stateid != null" >
+        stateid = #{stateid,jdbcType=INTEGER},
+      </if>
+      <if test="storeid != null" >
+        storeid = #{storeid,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        unitid = #{unitid,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null" >
+        gid = #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="shopname != null" >
+        shopname = #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="sbrand != null" >
+        sBrand = #{sbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="pictrueurl != null" >
+        pictrueUrl = #{pictrueurl,jdbcType=VARCHAR},
+      </if>
+      <if test="stockprice != null" >
+        stockprice = #{stockprice,jdbcType=REAL},
+      </if>
+      <if test="bjmoney != null" >
+        bjmoney = #{bjmoney,jdbcType=REAL},
+      </if>
+      <if test="hymoney != null" >
+        hymoney = #{hymoney,jdbcType=REAL},
+      </if>
+      <if test="vipmoney != null" >
+        vipmoney = #{vipmoney,jdbcType=REAL},
+      </if>
+      <if test="rxyprice != null" >
+        rxyprice = #{rxyprice,jdbcType=REAL},
+      </if>
+    </set>
+    where shopid = #{shopid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Shop" >
+    update shop
+    set firmno = #{firmno,jdbcType=VARCHAR},
+      stateid = #{stateid,jdbcType=INTEGER},
+      storeid = #{storeid,jdbcType=VARCHAR},
+      unitid = #{unitid,jdbcType=INTEGER},
+      gid = #{gid,jdbcType=INTEGER},
+      shopname = #{shopname,jdbcType=VARCHAR},
+      sBrand = #{sbrand,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=INTEGER},
+      pictrueUrl = #{pictrueurl,jdbcType=VARCHAR},
+      stockprice = #{stockprice,jdbcType=REAL},
+      bjmoney = #{bjmoney,jdbcType=REAL},
+      hymoney = #{hymoney,jdbcType=REAL},
+      vipmoney = #{vipmoney,jdbcType=REAL},
+      rxyprice = #{rxyprice,jdbcType=REAL}
+    where shopid = #{shopid,jdbcType=VARCHAR}
+  </update>
+</mapper>

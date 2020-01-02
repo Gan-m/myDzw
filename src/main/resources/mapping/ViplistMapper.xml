@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.ViplistMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Viplist" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="clientno" property="clientno" jdbcType="VARCHAR" />
+    <result column="integral" property="integral" jdbcType="REAL" />
+    <result column="jiontime" property="jiontime" jdbcType="DATE" />
+    <result column="sumjf" property="sumjf" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mid, clientno, integral, jiontime, sumjf
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from viplist
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from viplist
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Viplist" >
+    insert into viplist (id, mid, clientno, 
+      integral, jiontime, sumjf)
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{clientno,jdbcType=VARCHAR}, 
+      #{integral,jdbcType=REAL}, #{jiontime,jdbcType=DATE}, #{sumjf,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Viplist" >
+    insert into viplist
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="clientno != null" >
+        clientno,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="jiontime != null" >
+        jiontime,
+      </if>
+      <if test="sumjf != null" >
+        sumjf,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="clientno != null" >
+        #{clientno,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=REAL},
+      </if>
+      <if test="jiontime != null" >
+        #{jiontime,jdbcType=DATE},
+      </if>
+      <if test="sumjf != null" >
+        #{sumjf,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Viplist" >
+    update viplist
+    <set >
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="clientno != null" >
+        clientno = #{clientno,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=REAL},
+      </if>
+      <if test="jiontime != null" >
+        jiontime = #{jiontime,jdbcType=DATE},
+      </if>
+      <if test="sumjf != null" >
+        sumjf = #{sumjf,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Viplist" >
+    update viplist
+    set mid = #{mid,jdbcType=INTEGER},
+      clientno = #{clientno,jdbcType=VARCHAR},
+      integral = #{integral,jdbcType=REAL},
+      jiontime = #{jiontime,jdbcType=DATE},
+      sumjf = #{sumjf,jdbcType=REAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

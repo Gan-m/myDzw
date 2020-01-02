@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.WxxqdMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Wxxqd" >
+    <id column="wxqid" property="wxqid" jdbcType="INTEGER" />
+    <result column="insid" property="insid" jdbcType="INTEGER" />
+    <result column="rid" property="rid" jdbcType="INTEGER" />
+    <result column="sum" property="sum" jdbcType="INTEGER" />
+    <result column="couponmoney" property="couponmoney" jdbcType="REAL" />
+    <result column="datepmoney" property="datepmoney" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    wxqid, insid, rid, sum, couponmoney, datepmoney
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from wxxqd
+    where wxqid = #{wxqid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from wxxqd
+    where wxqid = #{wxqid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Wxxqd" >
+    insert into wxxqd (wxqid, insid, rid, 
+      sum, couponmoney, datepmoney
+      )
+    values (#{wxqid,jdbcType=INTEGER}, #{insid,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER}, 
+      #{sum,jdbcType=INTEGER}, #{couponmoney,jdbcType=REAL}, #{datepmoney,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Wxxqd" >
+    insert into wxxqd
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wxqid != null" >
+        wxqid,
+      </if>
+      <if test="insid != null" >
+        insid,
+      </if>
+      <if test="rid != null" >
+        rid,
+      </if>
+      <if test="sum != null" >
+        sum,
+      </if>
+      <if test="couponmoney != null" >
+        couponmoney,
+      </if>
+      <if test="datepmoney != null" >
+        datepmoney,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wxqid != null" >
+        #{wxqid,jdbcType=INTEGER},
+      </if>
+      <if test="insid != null" >
+        #{insid,jdbcType=INTEGER},
+      </if>
+      <if test="rid != null" >
+        #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="sum != null" >
+        #{sum,jdbcType=INTEGER},
+      </if>
+      <if test="couponmoney != null" >
+        #{couponmoney,jdbcType=REAL},
+      </if>
+      <if test="datepmoney != null" >
+        #{datepmoney,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Wxxqd" >
+    update wxxqd
+    <set >
+      <if test="insid != null" >
+        insid = #{insid,jdbcType=INTEGER},
+      </if>
+      <if test="rid != null" >
+        rid = #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="sum != null" >
+        sum = #{sum,jdbcType=INTEGER},
+      </if>
+      <if test="couponmoney != null" >
+        couponmoney = #{couponmoney,jdbcType=REAL},
+      </if>
+      <if test="datepmoney != null" >
+        datepmoney = #{datepmoney,jdbcType=REAL},
+      </if>
+    </set>
+    where wxqid = #{wxqid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Wxxqd" >
+    update wxxqd
+    set insid = #{insid,jdbcType=INTEGER},
+      rid = #{rid,jdbcType=INTEGER},
+      sum = #{sum,jdbcType=INTEGER},
+      couponmoney = #{couponmoney,jdbcType=REAL},
+      datepmoney = #{datepmoney,jdbcType=REAL}
+    where wxqid = #{wxqid,jdbcType=INTEGER}
+  </update>
+</mapper>

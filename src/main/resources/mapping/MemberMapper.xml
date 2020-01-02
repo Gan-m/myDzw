@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.MemberMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Member" >
+    <id column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="membername" property="membername" jdbcType="VARCHAR" />
+    <result column="baifb" property="baifb" jdbcType="REAL" />
+    <result column="memberjfcount" property="memberjfcount" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    mid, membername, baifb, memberjfcount
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member
+    where mid = #{mid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member
+    where mid = #{mid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Member" >
+    insert into member (mid, membername, baifb, 
+      memberjfcount)
+    values (#{mid,jdbcType=INTEGER}, #{membername,jdbcType=VARCHAR}, #{baifb,jdbcType=REAL}, 
+      #{memberjfcount,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Member" >
+    insert into member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="membername != null" >
+        membername,
+      </if>
+      <if test="baifb != null" >
+        baifb,
+      </if>
+      <if test="memberjfcount != null" >
+        memberjfcount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="membername != null" >
+        #{membername,jdbcType=VARCHAR},
+      </if>
+      <if test="baifb != null" >
+        #{baifb,jdbcType=REAL},
+      </if>
+      <if test="memberjfcount != null" >
+        #{memberjfcount,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Member" >
+    update member
+    <set >
+      <if test="membername != null" >
+        membername = #{membername,jdbcType=VARCHAR},
+      </if>
+      <if test="baifb != null" >
+        baifb = #{baifb,jdbcType=REAL},
+      </if>
+      <if test="memberjfcount != null" >
+        memberjfcount = #{memberjfcount,jdbcType=REAL},
+      </if>
+    </set>
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Member" >
+    update member
+    set membername = #{membername,jdbcType=VARCHAR},
+      baifb = #{baifb,jdbcType=REAL},
+      memberjfcount = #{memberjfcount,jdbcType=REAL}
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.ArtisanMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Artisan" >
+    <id column="artisanid" property="artisanid" jdbcType="VARCHAR" />
+    <result column="teamid" property="teamid" jdbcType="INTEGER" />
+    <result column="starsid" property="starsid" jdbcType="INTEGER" />
+    <result column="isgroup" property="isgroup" jdbcType="BIT" />
+    <result column="aname" property="aname" jdbcType="VARCHAR" />
+    <result column="asex" property="asex" jdbcType="INTEGER" />
+    <result column="aphone" property="aphone" jdbcType="VARCHAR" />
+    <result column="loginaid" property="loginaid" jdbcType="VARCHAR" />
+    <result column="loginapaw" property="loginapaw" jdbcType="VARCHAR" />
+    <result column="idcaid" property="idcaid" jdbcType="VARCHAR" />
+    <result column="araddress" property="araddress" jdbcType="VARCHAR" />
+    <result column="craft" property="craft" jdbcType="VARCHAR" />
+    <result column="maintainBrand" property="maintainbrand" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    artisanid, teamid, starsid, isgroup, aname, asex, aphone, loginaid, loginapaw, idcaid, 
+    araddress, craft, maintainBrand
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from artisan
+    where artisanid = #{artisanid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from artisan
+    where artisanid = #{artisanid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Artisan" >
+    insert into artisan (artisanid, teamid, starsid, 
+      isgroup, aname, asex, aphone, 
+      loginaid, loginapaw, idcaid, 
+      araddress, craft, maintainBrand
+      )
+    values (#{artisanid,jdbcType=VARCHAR}, #{teamid,jdbcType=INTEGER}, #{starsid,jdbcType=INTEGER}, 
+      #{isgroup,jdbcType=BIT}, #{aname,jdbcType=VARCHAR}, #{asex,jdbcType=INTEGER}, #{aphone,jdbcType=VARCHAR}, 
+      #{loginaid,jdbcType=VARCHAR}, #{loginapaw,jdbcType=VARCHAR}, #{idcaid,jdbcType=VARCHAR}, 
+      #{araddress,jdbcType=VARCHAR}, #{craft,jdbcType=VARCHAR}, #{maintainbrand,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Artisan" >
+    insert into artisan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="artisanid != null" >
+        artisanid,
+      </if>
+      <if test="teamid != null" >
+        teamid,
+      </if>
+      <if test="starsid != null" >
+        starsid,
+      </if>
+      <if test="isgroup != null" >
+        isgroup,
+      </if>
+      <if test="aname != null" >
+        aname,
+      </if>
+      <if test="asex != null" >
+        asex,
+      </if>
+      <if test="aphone != null" >
+        aphone,
+      </if>
+      <if test="loginaid != null" >
+        loginaid,
+      </if>
+      <if test="loginapaw != null" >
+        loginapaw,
+      </if>
+      <if test="idcaid != null" >
+        idcaid,
+      </if>
+      <if test="araddress != null" >
+        araddress,
+      </if>
+      <if test="craft != null" >
+        craft,
+      </if>
+      <if test="maintainbrand != null" >
+        maintainBrand,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="artisanid != null" >
+        #{artisanid,jdbcType=VARCHAR},
+      </if>
+      <if test="teamid != null" >
+        #{teamid,jdbcType=INTEGER},
+      </if>
+      <if test="starsid != null" >
+        #{starsid,jdbcType=INTEGER},
+      </if>
+      <if test="isgroup != null" >
+        #{isgroup,jdbcType=BIT},
+      </if>
+      <if test="aname != null" >
+        #{aname,jdbcType=VARCHAR},
+      </if>
+      <if test="asex != null" >
+        #{asex,jdbcType=INTEGER},
+      </if>
+      <if test="aphone != null" >
+        #{aphone,jdbcType=VARCHAR},
+      </if>
+      <if test="loginaid != null" >
+        #{loginaid,jdbcType=VARCHAR},
+      </if>
+      <if test="loginapaw != null" >
+        #{loginapaw,jdbcType=VARCHAR},
+      </if>
+      <if test="idcaid != null" >
+        #{idcaid,jdbcType=VARCHAR},
+      </if>
+      <if test="araddress != null" >
+        #{araddress,jdbcType=VARCHAR},
+      </if>
+      <if test="craft != null" >
+        #{craft,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainbrand != null" >
+        #{maintainbrand,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Artisan" >
+    update artisan
+    <set >
+      <if test="teamid != null" >
+        teamid = #{teamid,jdbcType=INTEGER},
+      </if>
+      <if test="starsid != null" >
+        starsid = #{starsid,jdbcType=INTEGER},
+      </if>
+      <if test="isgroup != null" >
+        isgroup = #{isgroup,jdbcType=BIT},
+      </if>
+      <if test="aname != null" >
+        aname = #{aname,jdbcType=VARCHAR},
+      </if>
+      <if test="asex != null" >
+        asex = #{asex,jdbcType=INTEGER},
+      </if>
+      <if test="aphone != null" >
+        aphone = #{aphone,jdbcType=VARCHAR},
+      </if>
+      <if test="loginaid != null" >
+        loginaid = #{loginaid,jdbcType=VARCHAR},
+      </if>
+      <if test="loginapaw != null" >
+        loginapaw = #{loginapaw,jdbcType=VARCHAR},
+      </if>
+      <if test="idcaid != null" >
+        idcaid = #{idcaid,jdbcType=VARCHAR},
+      </if>
+      <if test="araddress != null" >
+        araddress = #{araddress,jdbcType=VARCHAR},
+      </if>
+      <if test="craft != null" >
+        craft = #{craft,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainbrand != null" >
+        maintainBrand = #{maintainbrand,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where artisanid = #{artisanid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Artisan" >
+    update artisan
+    set teamid = #{teamid,jdbcType=INTEGER},
+      starsid = #{starsid,jdbcType=INTEGER},
+      isgroup = #{isgroup,jdbcType=BIT},
+      aname = #{aname,jdbcType=VARCHAR},
+      asex = #{asex,jdbcType=INTEGER},
+      aphone = #{aphone,jdbcType=VARCHAR},
+      loginaid = #{loginaid,jdbcType=VARCHAR},
+      loginapaw = #{loginapaw,jdbcType=VARCHAR},
+      idcaid = #{idcaid,jdbcType=VARCHAR},
+      araddress = #{araddress,jdbcType=VARCHAR},
+      craft = #{craft,jdbcType=VARCHAR},
+      maintainBrand = #{maintainbrand,jdbcType=VARCHAR}
+    where artisanid = #{artisanid,jdbcType=VARCHAR}
+  </update>
+</mapper>
