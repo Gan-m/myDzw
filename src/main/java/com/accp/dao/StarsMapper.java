@@ -1,5 +1,7 @@
 package com.accp.dao;
 
+import java.util.List;
+
 import com.accp.pojo.Stars;
 
 public interface StarsMapper {
@@ -14,4 +16,6 @@ public interface StarsMapper {
     int updateByPrimaryKeySelective(Stars record);
 
     int updateByPrimaryKey(Stars record);
+    
+    List<Stars> query();
 }
