@@ -38,7 +38,7 @@
   </select>
   
   <select id="login" resultType="com.accp.pojo.Employee">
-  	SELECT * FROM `employee` e WHERE e.`emplogenid` =#{eid} AND e.`emplogepaw`=#{epaw}
+  	SELECT * FROM `employee` e WHERE e.`emplogenid` =#{eid} AND e.`emplogepaw`=#{epaw} AND e.`stateid`=1
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
