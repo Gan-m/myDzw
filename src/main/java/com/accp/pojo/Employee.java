@@ -222,4 +222,17 @@ public class Employee {
     public void setBrithtimes(Date brithtimes) {
         this.brithtimes = brithtimes;
     }
+
+	@Override
+	public String toString() {
+		return "Employee [employeeid=" + employeeid + ", propertyid=" + propertyid + ", storeid=" + storeid
+				+ ", departmentid=" + departmentid + ", stateid=" + stateid + ", empname=" + empname + ", esex=" + esex
+				+ ", emplogenid=" + emplogenid + ", emplogepaw=" + emplogepaw + ", education=" + education
+				+ ", graduationschool=" + graduationschool + ", major=" + major + ", crrdid=" + crrdid + ", address="
+				+ address + ", newaddress=" + newaddress + ", empphone=" + empphone + ", emergencyphone="
+				+ emergencyphone + ", molphone=" + molphone + ", email=" + email + ", entrytimes=" + entrytimes
+				+ ", lztimes=" + lztimes + ", brithtimes=" + brithtimes + "]";
+	}
+    
+    
 }
