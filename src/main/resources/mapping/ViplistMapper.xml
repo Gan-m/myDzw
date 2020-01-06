@@ -18,6 +18,9 @@
     from viplist
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectAll"  resultType="com.accp.pojo.Viplist">
+  	SELECT * FROM `viplist`
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from viplist
     where id = #{id,jdbcType=INTEGER}
@@ -50,7 +53,7 @@
         sumjf,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
+    <trim prefix="value (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
@@ -58,7 +61,7 @@
         #{mid,jdbcType=INTEGER},
       </if>
       <if test="clientno != null" >
-        #{clientno,jdbcType=VARCHAR},
+        ${clientno},
       </if>
       <if test="integral != null" >
         #{integral,jdbcType=REAL},
