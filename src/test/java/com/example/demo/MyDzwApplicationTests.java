@@ -13,6 +13,8 @@ import com.accp.biz.m.MjBiz;
 class MyDzwApplicationTests {
 	@Autowired
 	private MjBiz biz;
+	
+	
 	@Test
 	void getEngineList() {
 		biz.getEngineList(null).forEach(item->{
@@ -20,4 +22,7 @@ class MyDzwApplicationTests {
 		});
 	}
 
+	void login() {
+		
+	}
 }

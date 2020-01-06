@@ -36,11 +36,25 @@
     from employee
     where employeeid = #{employeeid,jdbcType=VARCHAR}
   </select>
+
+   <select id="select" resultType="com.accp.vo.q.EmpVo" parameterType="java.lang.Integer">
+    	select `employeeid`,`propertyid`,`storeid`,`depnames`,`esex`,`empname`,`emplogenid`,`emplogepaw`,`education`,`graduationschool`,`major`,`crrdID`,`address`,`newaddress`,`empphone`,`emergencyphone`,`molphone`,`email`,`entrytimes`,`lztimes`,`brithtimes` from employee e inner join department d on e.`departmentid`=d.`departmentid`
+    	<where>
+	    	<if test="fid!=0">
+	    		and d.`depfaid`=#{fid}
+	    	</if>
+	    	<if test="tj!=''">
+	    		and e.empname=#{tj}
+	    	</if>
+    	</where>
+  </select>
+
   
   <select id="login" resultType="com.accp.pojo.Employee">
   	SELECT * FROM `employee` e WHERE e.`emplogenid` =#{eid} AND e.`emplogepaw`=#{epaw} AND e.`stateid`=1
   </select>
   
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from employee
     where employeeid = #{employeeid,jdbcType=VARCHAR}
