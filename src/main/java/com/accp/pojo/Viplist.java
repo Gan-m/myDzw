@@ -2,6 +2,7 @@ package com.accp.pojo;
 
 import java.util.Date;
 
+
 public class Viplist {
     private Integer id;
 
@@ -62,4 +63,25 @@ public class Viplist {
     public void setSumjf(Float sumjf) {
         this.sumjf = sumjf;
     }
+
+	public Viplist(Integer id, Integer mid, String clientno, Float integral, Date jiontime, Float sumjf) {
+		super();
+		this.id = id;
+		this.mid = mid;
+		this.clientno = clientno;
+		this.integral = integral;
+		this.jiontime = jiontime;
+		this.sumjf = sumjf;
+	}
+
+	public Viplist() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "Viplist [id=" + id + ", mid=" + mid + ", clientno=" + clientno + ", integral=" + integral
+				+ ", jiontime=" + jiontime + ", sumjf=" + sumjf + "]";
+	}
+    
 }
