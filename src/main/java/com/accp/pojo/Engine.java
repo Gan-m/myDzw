@@ -20,4 +20,20 @@ public class Engine {
     public void setEnginename(String enginename) {
         this.enginename = enginename == null ? null : enginename.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Engine [engineid=" + engineid + ", enginename=" + enginename + "]";
+	}
+
+	public Engine(Integer engineid, String enginename) {
+		super();
+		this.engineid = engineid;
+		this.enginename = enginename;
+	}
+
+	public Engine() {
+		super();
+	}
+    
 }

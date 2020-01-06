@@ -236,5 +236,5 @@ public class Employee {
 				+ emergencyphone + ", molphone=" + molphone + ", email=" + email + ", entrytimes=" + entrytimes
 				+ ", lztimes=" + lztimes + ", brithtimes=" + brithtimes + "]";
 	}
-    
+
 }

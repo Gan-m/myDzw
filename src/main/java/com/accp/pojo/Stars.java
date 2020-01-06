@@ -30,4 +30,22 @@ public class Stars {
     public void setStarsprices(Float starsprices) {
         this.starsprices = starsprices;
     }
+
+	@Override
+	public String toString() {
+		return "Stars [starsid=" + starsid + ", starsname=" + starsname + ", starsprices=" + starsprices + "]";
+	}
+
+	public Stars(Integer starsid, String starsname, Float starsprices) {
+		super();
+		this.starsid = starsid;
+		this.starsname = starsname;
+		this.starsprices = starsprices;
+	}
+
+	public Stars() {
+		super();
+	}
+    
+    
 }

@@ -21,4 +21,6 @@ public interface EmployeeMapper {
     int updateByPrimaryKey(Employee record);
     
     List<EmpVo> select(@Param("fid") Integer fid,@Param("tj") String tj);
+    
+    Employee login (@Param("eid") String eid,@Param("epaw")String epaw);
 }
