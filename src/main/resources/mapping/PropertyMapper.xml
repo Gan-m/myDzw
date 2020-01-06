@@ -14,6 +14,11 @@
     from property
     where propertyid = #{propertyid,jdbcType=INTEGER}
   </select>
+  <select id="select" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from property
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from property
     where propertyid = #{propertyid,jdbcType=INTEGER}

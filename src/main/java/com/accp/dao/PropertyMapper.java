@@ -1,5 +1,7 @@
 package com.accp.dao;
 
+import java.util.List;
+
 import com.accp.pojo.Property;
 
 public interface PropertyMapper {
@@ -14,4 +16,6 @@ public interface PropertyMapper {
     int updateByPrimaryKeySelective(Property record);
 
     int updateByPrimaryKey(Property record);
+    
+    List<Property> select();
 }

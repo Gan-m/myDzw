@@ -2,6 +2,8 @@ package com.accp.pojo;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Employee {
     private String employeeid;
 
@@ -41,10 +43,11 @@ public class Employee {
 
     private String email;
 
+    @JSONField(format="yyyy-MM-dd")
     private Date entrytimes;
-
+    @JSONField(format="yyyy-MM-dd")
     private Date lztimes;
-
+    @JSONField(format="yyyy-MM-dd")
     private Date brithtimes;
 
     public String getEmployeeid() {
@@ -222,4 +225,16 @@ public class Employee {
     public void setBrithtimes(Date brithtimes) {
         this.brithtimes = brithtimes;
     }
+
+	@Override
+	public String toString() {
+		return "Employee [employeeid=" + employeeid + ", propertyid=" + propertyid + ", storeid=" + storeid
+				+ ", departmentid=" + departmentid + ", stateid=" + stateid + ", empname=" + empname + ", esex=" + esex
+				+ ", emplogenid=" + emplogenid + ", emplogepaw=" + emplogepaw + ", education=" + education
+				+ ", graduationschool=" + graduationschool + ", major=" + major + ", crrdid=" + crrdid + ", address="
+				+ address + ", newaddress=" + newaddress + ", empphone=" + empphone + ", emergencyphone="
+				+ emergencyphone + ", molphone=" + molphone + ", email=" + email + ", entrytimes=" + entrytimes
+				+ ", lztimes=" + lztimes + ", brithtimes=" + brithtimes + "]";
+	}
+    
 }

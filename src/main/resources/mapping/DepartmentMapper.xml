@@ -4,9 +4,10 @@
   <resultMap id="BaseResultMap" type="com.accp.pojo.Department" >
     <id column="departmentid" property="departmentid" jdbcType="INTEGER" />
     <result column="depnames" property="depnames" jdbcType="VARCHAR" />
+    <result column="depfaid" property="depfaid" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    departmentid, depnames
+    departmentid, depnames,depfaid
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -14,13 +15,24 @@
     from department
     where departmentid = #{departmentid,jdbcType=INTEGER}
   </select>
+  <select id="select" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from department
+  </select>
+  <select id="selectBm" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from department
+    where depfaid = 0
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from department
     where departmentid = #{departmentid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.accp.pojo.Department" >
     insert into department (departmentid, depnames)
-    values (#{departmentid,jdbcType=INTEGER}, #{depnames,jdbcType=VARCHAR})
+    values (#{departmentid,jdbcType=INTEGER}, #{depnames,jdbcType=VARCHAR},#{depfaid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.pojo.Department" >
     insert into department
@@ -31,6 +43,9 @@
       <if test="depnames != null" >
         depnames,
       </if>
+      <if test="depfaid!=null">
+     	 depfaid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="departmentid != null" >
@@ -38,6 +53,9 @@
       </if>
       <if test="depnames != null" >
         #{depnames,jdbcType=VARCHAR},
+      </if>
+      <if test="depfaid != null" >
+        #{depfaid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -47,12 +65,15 @@
       <if test="depnames != null" >
         depnames = #{depnames,jdbcType=VARCHAR},
       </if>
+      <if test="depfaid != null" >
+        depfaid = #{depfaid,jdbcType=VARCHAR},
+      </if>
     </set>
     where departmentid = #{departmentid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Department" >
     update department
-    set depnames = #{depnames,jdbcType=VARCHAR}
+    set depnames = #{depnames,jdbcType=VARCHAR},depfaid = #{depfaid,jdbcType=VARCHAR}
     where departmentid = #{departmentid,jdbcType=INTEGER}
   </update>
 </mapper>
