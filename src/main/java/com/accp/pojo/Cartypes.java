@@ -30,4 +30,21 @@ public class Cartypes {
     public void setCartypeszm(String cartypeszm) {
         this.cartypeszm = cartypeszm == null ? null : cartypeszm.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Cartypes [ctsid=" + ctsid + ", ctsnames=" + ctsnames + ", cartypeszm=" + cartypeszm + "]";
+	}
+
+	public Cartypes(Integer ctsid, String ctsnames, String cartypeszm) {
+		super();
+		this.ctsid = ctsid;
+		this.ctsnames = ctsnames;
+		this.cartypeszm = cartypeszm;
+	}
+
+	public Cartypes() {
+		super();
+	}
+    
 }
