@@ -35,6 +35,9 @@ public class OuyangXiaoyueText {
 		//删除
 //		int count = starsbiz.removeByidStars(4);
 //		System.out.println("删除的结果值："+count);
+		
+		Stars stars=starsbiz.queryByName("一级技工");
+		System.out.println(stars);
 	}
 	
 	
