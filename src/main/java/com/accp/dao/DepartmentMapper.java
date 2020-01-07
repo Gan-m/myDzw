@@ -1,5 +1,7 @@
 package com.accp.dao;
 
+import java.util.List;
+
 import com.accp.pojo.Department;
 
 public interface DepartmentMapper {
@@ -10,6 +12,10 @@ public interface DepartmentMapper {
     int insertSelective(Department record);
 
     Department selectByPrimaryKey(Integer departmentid);
+    
+    List<Department> select();
+    
+    List<Department> selectBm();
 
     int updateByPrimaryKeySelective(Department record);
 

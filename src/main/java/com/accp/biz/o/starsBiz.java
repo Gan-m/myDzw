@@ -33,6 +33,10 @@ public class starsBiz {
 	public Stars queryByid(Integer id) {
 		return starsDao.selectByPrimaryKey(id);
 	}
+	
+	public Stars queryByName(String name) {
+		return starsDao.selectByName(name);
+	}
 	/**
 	 * 新增一条星级数据
 	 */
