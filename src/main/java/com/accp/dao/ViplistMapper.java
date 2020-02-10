@@ -1,5 +1,7 @@
 package com.accp.dao;
 
+import java.util.List;
+
 import com.accp.pojo.Viplist;
 
 public interface ViplistMapper {
@@ -10,6 +12,8 @@ public interface ViplistMapper {
     int insertSelective(Viplist record);
 
     Viplist selectByPrimaryKey(Integer id);
+    
+    List<Viplist> selectAll();
 
     int updateByPrimaryKeySelective(Viplist record);
 
