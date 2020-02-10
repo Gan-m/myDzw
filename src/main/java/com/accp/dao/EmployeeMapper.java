@@ -23,4 +23,9 @@ public interface EmployeeMapper {
     List<EmpVo> select(@Param("fid") Integer fid,@Param("tj") String tj);
     
     Employee login (@Param("eid") String eid,@Param("epaw")String epaw);
+    
+    int updStateidHui(@Param("employeeid") String employeeid);
+    
+    int updStateidLi(@Param("employeeid") String employeeid);
+    
 }
