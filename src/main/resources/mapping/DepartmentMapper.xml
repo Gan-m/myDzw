@@ -19,6 +19,7 @@
     select 
     <include refid="Base_Column_List" />
     from department
+    where depfaid != 0
   </select>
   <select id="selectBm" resultMap="BaseResultMap">
     select 
@@ -26,13 +27,19 @@
     from department
     where depfaid = 0
   </select>
+   <select id="selectCha" resultMap="BaseResultMap">
+    select 
+    *
+    from department
+    where departmentid = #{bh}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from department
     where departmentid = #{departmentid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.accp.pojo.Department" >
-    insert into department (departmentid, depnames)
-    values (#{departmentid,jdbcType=INTEGER}, #{depnames,jdbcType=VARCHAR},#{depfaid,jdbcType=VARCHAR})
+    insert into department (departmentid, depnames,depfaid)
+    values (#{departmentid}, #{depnames,jdbcType=VARCHAR},#{depfaid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.pojo.Department" >
     insert into department

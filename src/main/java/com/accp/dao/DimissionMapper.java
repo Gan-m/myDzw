@@ -1,6 +1,11 @@
 package com.accp.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.accp.pojo.Dimission;
+import com.accp.vo.q.DimVo;
 
 public interface DimissionMapper {
     int deleteByPrimaryKey(Integer dimissionid);
@@ -14,4 +19,6 @@ public interface DimissionMapper {
     int updateByPrimaryKeySelective(Dimission record);
 
     int updateByPrimaryKey(Dimission record);
+    
+    List<DimVo> select();
 }

@@ -43,5 +43,10 @@ public class Department {
 	public void setDepfaid(String depfaid) {
 		this.depfaid = depfaid;
 	}
+
+	@Override
+	public String toString() {
+		return "Department [departmentid=" + departmentid + ", depnames=" + depnames + ", depfaid=" + depfaid + "]";
+	}
     
 }

@@ -34,7 +34,7 @@
   <sql id="Base_Column_List" >
     employeeid, propertyid, storeid, departmentid, stateid, empname, esex, emplogenid, 
     emplogepaw, education, graduationschool, major, crrdID, address, newaddress, empphone, 
-    emergencyphone, molphone, email, entrytimes, lztimes, brithtimes
+    emergencyphone, molphone, email, entrytimes, lztimes, brithtimes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       0s
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -52,8 +52,10 @@
 	    	<if test="tj!=''">
 	    		and e.empname=#{tj}
 	    	</if>
+	    		and e.stateid=1
     	</where>
   </select>
+
 
 <!-- 四表联查关系映射 -->
 	<resultMap type="com.accp.pojo.Employee" id="userMap">
@@ -108,6 +110,9 @@
 	INNER JOIN prem p ON(p.`depid`=d.`departmentid`)
 	INNER JOIN fuction f ON(p.`fid`=f.fid)
 	 WHERE e.`emplogenid` =#{eid} AND e.`emplogepaw`=#{epaw} AND e.`stateid`=1
+
+  <select id="login" resultType="com.accp.pojo.Employee">
+  	SELECT * FROM `employee` e WHERE e.`emplogenid` =#{eid} AND e.`emplogepaw`=#{epaw}
   </select>
   
   <!-- 今日提示 -->
@@ -369,5 +374,15 @@
       lztimes = #{lztimes,jdbcType=DATE},
       brithtimes = #{brithtimes,jdbcType=DATE}
     where employeeid = #{employeeid,jdbcType=VARCHAR}
+  </update>
+  <update id="updStateidHui" parameterType="java.lang.String">
+  	update employee
+  	set stateid=1
+  	where employeeid=#{employeeid}
+  </update>
+   <update id="updStateidLi" parameterType="java.lang.String">
+  	update employee
+  	set stateid=2
+  	where employeeid=#{employeeid}
   </update>
 </mapper>
