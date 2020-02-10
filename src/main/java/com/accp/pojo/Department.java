@@ -1,13 +1,26 @@
 package com.accp.pojo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Department {
     private Integer departmentid;
 
     private String depnames;
     
     private String depfaid;
+    
+    private List<Fuction> flist =new ArrayList<Fuction>();
 
-    public Integer getDepartmentid() {
+    public List<Fuction> getFlist() {
+		return flist;
+	}
+
+	public void setFlist(List<Fuction> flist) {
+		this.flist = flist;
+	}
+
+	public Integer getDepartmentid() {
         return departmentid;
     }
 
@@ -29,6 +42,11 @@ public class Department {
 
 	public void setDepfaid(String depfaid) {
 		this.depfaid = depfaid;
+	}
+
+	@Override
+	public String toString() {
+		return "Department [departmentid=" + departmentid + ", depnames=" + depnames + ", depfaid=" + depfaid + "]";
 	}
     
 }

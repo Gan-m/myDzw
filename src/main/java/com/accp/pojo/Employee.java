@@ -49,8 +49,18 @@ public class Employee {
     private Date lztimes;
     @JSONField(format="yyyy-MM-dd")
     private Date brithtimes;
+    
+    private Department dep;
 
-    public String getEmployeeid() {
+    public Department getDep() {
+		return dep;
+	}
+
+	public void setDep(Department dep) {
+		this.dep = dep;
+	}
+
+	public String getEmployeeid() {
         return employeeid;
     }
 
