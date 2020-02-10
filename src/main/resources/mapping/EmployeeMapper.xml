@@ -25,6 +25,12 @@
     <result column="lztimes" property="lztimes" jdbcType="DATE" />
     <result column="brithtimes" property="brithtimes" jdbcType="DATE" />
   </resultMap>
+  
+  
+  
+  
+  
+  
   <sql id="Base_Column_List" >
     employeeid, propertyid, storeid, departmentid, stateid, empname, esex, emplogenid, 
     emplogepaw, education, graduationschool, major, crrdID, address, newaddress, empphone, 
@@ -49,11 +55,65 @@
     	</where>
   </select>
 
-  
-  <select id="login" resultType="com.accp.pojo.Employee">
-  	SELECT * FROM `employee` e WHERE e.`emplogenid` =#{eid} AND e.`emplogepaw`=#{epaw} AND e.`stateid`=1
+<!-- 四表联查关系映射 -->
+	<resultMap type="com.accp.pojo.Employee" id="userMap">
+	<id column="employeeid" property="employeeid" jdbcType="VARCHAR" />
+    <result column="propertyid" property="propertyid" jdbcType="INTEGER" />
+    <result column="storeid" property="storeid" jdbcType="VARCHAR" />
+    <result column="departmentid" property="departmentid" jdbcType="INTEGER" />
+    <result column="stateid" property="stateid" jdbcType="INTEGER" />
+    <result column="empname" property="empname" jdbcType="VARCHAR" />
+    <result column="esex" property="esex" jdbcType="INTEGER" />
+    <result column="emplogenid" property="emplogenid" jdbcType="VARCHAR" />
+    <result column="emplogepaw" property="emplogepaw" jdbcType="VARCHAR" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="graduationschool" property="graduationschool" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="crrdID" property="crrdid" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="newaddress" property="newaddress" jdbcType="VARCHAR" />
+    <result column="empphone" property="empphone" jdbcType="VARCHAR" />
+    <result column="emergencyphone" property="emergencyphone" jdbcType="VARCHAR" />
+    <result column="molphone" property="molphone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="entrytimes" property="entrytimes" jdbcType="DATE" />
+    <result column="lztimes" property="lztimes" jdbcType="DATE" />
+    <result column="brithtimes" property="brithtimes" jdbcType="DATE" />
+	<association property="dep" resultMap="depMap" />
+	</resultMap>
+	
+	<resultMap type="com.accp.pojo.Department" id="depMap">
+		<id column="departmentid" property="departmentid" jdbcType="INTEGER" />
+   	 	<result column="depnames" property="depnames" jdbcType="VARCHAR" />
+    	<result column="depfaid" property="depfaid" jdbcType="VARCHAR" />
+		<collection property="flist" ofType="com.accp.pojo.Fuction">
+			<id column="fid" property="fid" />
+			<result column="fno" property="fno" />
+			<result column="fname" property="fname" />
+			<result column="fpid" property="fpid" />
+			<association property="fuc" column="fpid"
+				select="selectParentFun"></association>
+		</collection>
+	</resultMap>
+
+	<select id="selectParentFun" resultType="com.accp.pojo.Fuction">
+		select * from fuction where fid=#{0}
+	</select> 
+
+
+  <!-- 登录 -->
+  <select id="login" resultMap="userMap">
+  	SELECT * FROM `employee` e
+	INNER JOIN department d ON(e.`departmentid`=d.`departmentid`) 
+	INNER JOIN prem p ON(p.`depid`=d.`departmentid`)
+	INNER JOIN fuction f ON(p.`fid`=f.fid)
+	 WHERE e.`emplogenid` =#{eid} AND e.`emplogepaw`=#{epaw} AND e.`stateid`=1
   </select>
   
+  <!-- 今日提示 -->
+	<select id="getnewsts" resultType="com.accp.pojo.Tcount">
+		SELECT * FROM tcount t WHERE t.`tcountime`=(SELECT DATE_FORMAT(NOW(),'%Y-%m-%d')); 
+	</select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from employee
