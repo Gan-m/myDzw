@@ -15,9 +15,7 @@ class MyDzwApplicationTests {
 	private MjBiz biz;
 	@Test
 	void getEngineList() {
-		biz.getEngineList(null).forEach(item->{
-			System.out.println(item);
-		});
+		System.out.println(biz);
 	}
 
 }

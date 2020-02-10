@@ -21,6 +21,13 @@
     from repair
     where rid = #{rid,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectzbbyzbid"  resultType="com.accp.pojo.Repair">
+    SELECT * FROM `repair` WHERE insid = #{zid}
+  </select>
+ 
+ 
+ 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from repair
     where rid = #{rid,jdbcType=INTEGER}

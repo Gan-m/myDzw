@@ -132,4 +132,36 @@ public class Instation {
     public void setIfjs(Boolean ifjs) {
         this.ifjs = ifjs;
     }
+
+	public Instation(Integer insid, Integer wxstateid, String artisanid, Integer ctsid, String instation, String jsyuan,
+			Date joininstimes, Date predictcompletetime, Date predicttime, Float budgetmoney, String insevent,
+			Boolean iszn, Boolean ifjs) {
+		super();
+		this.insid = insid;
+		this.wxstateid = wxstateid;
+		this.artisanid = artisanid;
+		this.ctsid = ctsid;
+		this.instation = instation;
+		this.jsyuan = jsyuan;
+		this.joininstimes = joininstimes;
+		this.predictcompletetime = predictcompletetime;
+		this.predicttime = predicttime;
+		this.budgetmoney = budgetmoney;
+		this.insevent = insevent;
+		this.iszn = iszn;
+		this.ifjs = ifjs;
+	}
+
+	public Instation() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "Instation [insid=" + insid + ", wxstateid=" + wxstateid + ", artisanid=" + artisanid + ", ctsid="
+				+ ctsid + ", instation=" + instation + ", jsyuan=" + jsyuan + ", joininstimes=" + joininstimes
+				+ ", predictcompletetime=" + predictcompletetime + ", predicttime=" + predicttime + ", budgetmoney="
+				+ budgetmoney + ", insevent=" + insevent + ", iszn=" + iszn + ", ifjs=" + ifjs + "]";
+	}
+    
 }

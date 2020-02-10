@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.accp.biz.o.starsBiz;
+import com.accp.biz.y.VipBiz;
 import com.accp.pojo.Stars;
+import com.alibaba.fastjson.JSON;
 /**
  * 欧阳小粤的数据测试类
  * @author Administrator
@@ -17,7 +19,7 @@ import com.accp.pojo.Stars;
 public class OuyangXiaoyueText {
 
 	@Autowired
-	private starsBiz starsbiz;
+	private VipBiz biz;
 	/**
 	 * 测试遍历技工星际所有的数据
 	 */
@@ -36,8 +38,6 @@ public class OuyangXiaoyueText {
 //		int count = starsbiz.removeByidStars(4);
 //		System.out.println("删除的结果值："+count);
 		
-		Stars stars=starsbiz.queryByName("一级技工");
-		System.out.println(stars);
 	}
 	
 	

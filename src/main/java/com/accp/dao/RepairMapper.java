@@ -1,5 +1,7 @@
 package com.accp.dao;
 
+import java.util.List;
+
 import com.accp.pojo.Repair;
 
 public interface RepairMapper {
@@ -10,7 +12,9 @@ public interface RepairMapper {
     int insertSelective(Repair record);
 
     Repair selectByPrimaryKey(Integer rid);
-
+    
+    List<Repair> selectzbbyzbid(Integer zid);
+    
     int updateByPrimaryKeySelective(Repair record);
 
     int updateByPrimaryKey(Repair record);

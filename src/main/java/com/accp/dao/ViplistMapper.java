@@ -14,7 +14,8 @@ public interface ViplistMapper {
     Viplist selectByPrimaryKey(Integer id);
     
     List<Viplist> selectAll();
-
+    
+    
     int updateByPrimaryKeySelective(Viplist record);
 
     int updateByPrimaryKey(Viplist record);

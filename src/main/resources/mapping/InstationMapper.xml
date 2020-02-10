@@ -26,6 +26,12 @@
     from instation
     where insid = #{insid,jdbcType=INTEGER}
   </select>
+  <select id="selectBysfj"  resultType="com.accp.pojo.Instation">
+  	SELECT 
+  	<include refid="Base_Column_List" /> 
+  	FROM `instation` 
+  	WHERE `ifjs` = ${sfjs}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from instation
     where insid = #{insid,jdbcType=INTEGER}
@@ -184,5 +190,8 @@
       iszn = #{iszn,jdbcType=BIT},
       ifjs = #{ifjs,jdbcType=BIT}
     where insid = #{insid,jdbcType=INTEGER}
+  </update>
+  <update id="updateById">
+  	UPDATE `instation` SET wxstateid=3,ifjs=0 WHERE insid = #{id}
   </update>
 </mapper>
