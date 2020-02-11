@@ -7,11 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.accp.biz.o.starsBiz;
+<<<<<<< HEAD
 import com.accp.biz.o.teamBiz;
+=======
+import com.accp.biz.y.VipBiz;
+>>>>>>> branch 'master' of https://github.com/Gan-m/myDzw.git
 import com.accp.pojo.Stars;
+<<<<<<< HEAD
 import com.accp.pojo.Team;
 import com.accp.pojo.Workcars;
 import com.accp.vo.o.Team_artisan;
+=======
+import com.alibaba.fastjson.JSON;
+>>>>>>> branch 'master' of https://github.com/Gan-m/myDzw.git
 /**
  * 欧阳小粤的数据测试类
  * @author Administrator
@@ -21,9 +29,13 @@ import com.accp.vo.o.Team_artisan;
 public class OuyangXiaoyueText {
 
 	@Autowired
+<<<<<<< HEAD
 	private starsBiz starsbiz;
 	@Autowired
 	private teamBiz teambiz;
+=======
+	private VipBiz biz;
+>>>>>>> branch 'master' of https://github.com/Gan-m/myDzw.git
 	/**
 	 * 测试遍历技工星际所有的数据
 	 */
@@ -41,9 +53,13 @@ public class OuyangXiaoyueText {
 		//删除
 //		int count = starsbiz.removeByidStars(4);
 //		System.out.println("删除的结果值："+count);
+<<<<<<< HEAD
 		//通过名称查询一条数据
 		Stars stars=starsbiz.queryByName("一级技工");
 		System.out.println(stars);
+=======
+		
+>>>>>>> branch 'master' of https://github.com/Gan-m/myDzw.git
 	}
 	
 	/**

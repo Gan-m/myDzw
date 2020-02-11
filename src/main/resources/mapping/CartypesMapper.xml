@@ -9,20 +9,33 @@
   <sql id="Base_Column_List" >
     ctsid, ctsnames, cartypeszm
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from cartypes
-    where ctsid = #{ctsid,jdbcType=INTEGER}
+    <if test="option!='null'">
+    	 WHERE ctsid LIKE'%${option}%' OR ctsnames LIKE'%${option}%' OR cartypeszm LIKE'%${option}%'
+    </if>
+   <!-- ORDER BY cartypeszm ASC -->
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <select id="getType" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cartypes
+    <if test="option!='null'">
+    	 WHERE ctsid=#{option}
+    </if>
+   <!-- ORDER BY cartypeszm ASC -->
+  </select>
+  
+  <delete id="deleteByPrimaryKey" >
     delete from cartypes
-    where ctsid = #{ctsid,jdbcType=INTEGER}
+    where ctsid = #{ctsid}
   </delete>
   <insert id="insert" parameterType="com.accp.pojo.Cartypes" >
     insert into cartypes (ctsid, ctsnames, cartypeszm
       )
-    values (#{ctsid,jdbcType=INTEGER}, #{ctsnames,jdbcType=VARCHAR}, #{cartypeszm,jdbcType=VARCHAR}
+    values (#{type.ctsid,jdbcType=INTEGER}, #{type.ctsnames,jdbcType=VARCHAR}, #{type.cartypeszm,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.accp.pojo.Cartypes" >
@@ -64,8 +77,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Cartypes" >
     update cartypes
-    set ctsnames = #{ctsnames,jdbcType=VARCHAR},
-      cartypeszm = #{cartypeszm,jdbcType=VARCHAR}
-    where ctsid = #{ctsid,jdbcType=INTEGER}
+    set ctsnames = #{type.ctsnames,jdbcType=VARCHAR},
+      cartypeszm = #{type.cartypeszm,jdbcType=VARCHAR}
+    where ctsid = #{type.ctsid,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -17,6 +17,14 @@
     from dimission
     where dimissionid = #{dimissionid,jdbcType=INTEGER}
   </select>
+  <select  id="select" resultType="com.accp.vo.q.DimVo">
+  	SELECT (SELECT dep.`depnames` FROM `department` dep WHERE dep.departmentid=d.`depfaid`) AS depnamesfa,dimissionid,e.esex,e.employeeid,e.`empname`,d.`depnames`,`dimtimes`,`dimreasona` FROM `dimission` dim 
+	LEFT JOIN department d
+	ON dim.`departmentid`=d.`departmentid`
+	LEFT JOIN employee e
+	ON dim.`departmentid`=e.`departmentid`
+	<!-- WHERE dim.`dimissionid`=#{dimissionid} -->
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from dimission
     where dimissionid = #{dimissionid,jdbcType=INTEGER}
@@ -24,7 +32,7 @@
   <insert id="insert" parameterType="com.accp.pojo.Dimission" >
     insert into dimission (dimissionid, employeeid, departmentid, 
       dimtimes, dimreasona)
-    values (#{dimissionid,jdbcType=INTEGER}, #{employeeid,jdbcType=VARCHAR}, #{departmentid,jdbcType=INTEGER}, 
+    values (0, #{employeeid,jdbcType=VARCHAR}, #{departmentid,jdbcType=INTEGER}, 
       #{dimtimes,jdbcType=DATE}, #{dimreasona,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.pojo.Dimission" >
