@@ -1,5 +1,7 @@
 package com.accp.dao;
 
+import java.util.List;
+
 import com.accp.pojo.Cient;
 
 public interface CientMapper {
@@ -14,4 +16,6 @@ public interface CientMapper {
     int updateByPrimaryKeySelective(Cient record);
 
     int updateByPrimaryKey(Cient record);
+    
+    List<Cient> query();
 }

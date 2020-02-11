@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.accp.dao.StarsMapper;
 import com.accp.pojo.Stars;
+import com.accp.vo.o.Team_artisan;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @Service
 @Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED, readOnly = true)
@@ -22,8 +25,10 @@ public class starsBiz {
 	 * 遍历技工星级数据
 	 * @return
 	 */
-	public List<Stars> query(){
-		return starsDao.query();
+	public PageInfo<Stars> query(int pageNum,int pageSize){
+		PageHelper.startPage(pageNum, pageSize);
+		PageInfo<Stars> info = new PageInfo<Stars>(starsDao.query());
+		return info;
 	}
 	/**
 	 * 通过编号查询
@@ -36,7 +41,7 @@ public class starsBiz {
 	
 	public Stars queryByName(String name) {
 		return starsDao.selectByName(name);
-	}
+	} 
 	/**
 	 * 新增一条星级数据
 	 */
@@ -53,7 +58,11 @@ public class starsBiz {
 	public int removeByidStars(Integer id) {
 		return starsDao.deleteByPrimaryKey(id);
 	}
-	
+	/**
+	 * 修改
+	 * @param sta
+	 * @return
+	 */
 	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = false)
 	public int update(Stars sta) {
 		return starsDao.updateByPrimaryKeySelective(sta);

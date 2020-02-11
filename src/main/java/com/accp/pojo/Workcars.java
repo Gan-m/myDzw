@@ -1,5 +1,9 @@
 package com.accp.pojo;
-
+/**
+ * 外勤车辆的实体
+ * @author Administrator
+ *
+ */
 public class Workcars {
     private Integer wid;
 
@@ -12,8 +16,41 @@ public class Workcars {
     private String cartype;
 
     private Integer clic;
+    
+    private String teamname;
 
-    public Integer getWid() {
+
+	@Override
+	public String toString() {
+		return "Workcars [wid=" + wid + ", teamid=" + teamid + ", caid=" + caid + ", carbrand=" + carbrand
+				+ ", cartype=" + cartype + ", clic=" + clic + ", teamname=" + teamname + "]";
+	}
+
+	public Workcars() {
+		super();
+	}
+
+	public Workcars(Integer wid, Integer teamid, String caid, String carbrand, String cartype, Integer clic,
+			String teamname) {
+		super();
+		this.wid = wid;
+		this.teamid = teamid;
+		this.caid = caid;
+		this.carbrand = carbrand;
+		this.cartype = cartype;
+		this.clic = clic;
+		this.teamname = teamname;
+	}
+
+	public String getTeamname() {
+		return teamname;
+	}
+
+	public void setTeamname(String teamname) {
+		this.teamname = teamname;
+	}
+
+	public Integer getWid() {
         return wid;
     }
 
@@ -60,4 +97,7 @@ public class Workcars {
     public void setClic(Integer clic) {
         this.clic = clic;
     }
+
+	
+
 }

@@ -18,6 +18,12 @@
     from workcars
     where wid = #{wid,jdbcType=INTEGER}
   </select>
+  
+   <select id="queryWorkcars" resultType="com.accp.pojo.Workcars" >
+    
+   SELECT * FROM workcars INNER JOIN team ON team.`teamid`=workcars.`teamid`
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from workcars
     where wid = #{wid,jdbcType=INTEGER}

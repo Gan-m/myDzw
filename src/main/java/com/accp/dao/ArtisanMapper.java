@@ -1,5 +1,7 @@
 package com.accp.dao;
 
+import java.util.List;
+
 import com.accp.pojo.Artisan;
 
 public interface ArtisanMapper {
@@ -14,4 +16,6 @@ public interface ArtisanMapper {
     int updateByPrimaryKeySelective(Artisan record);
 
     int updateByPrimaryKey(Artisan record);
+    
+    List<Artisan> query();
 }
