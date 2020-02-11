@@ -40,11 +40,8 @@
     select 
     <include refid="Base_Column_List" />
     from employee
-<<<<<<< HEAD
+
     where employeeid = #{employeeid,jdbcType=VARCHAR}
-=======
-    where employeeid = #{employeeid,jdbcType=VARCHAR}
->>>>>>> branch 'master' of https://github.com/Gan-m/myDzw.git
   </select>
    <select id="select" resultType="com.accp.vo.q.EmpVo" parameterType="java.lang.Integer">
     	select `employeeid`,`propertyid`,`storeid`,`depnames`,`esex`,`empname`,`emplogenid`,`emplogepaw`,`education`,`graduationschool`,`major`,`crrdID`,`address`,`newaddress`,`empphone`,`emergencyphone`,`molphone`,`email`,`entrytimes`,`lztimes`,`brithtimes` from employee e inner join department d on e.`departmentid`=d.`departmentid`
@@ -58,8 +55,7 @@
 	    		and e.stateid=1
     	</where>
   </select>
-<<<<<<< HEAD
-=======
+
 
 
 <!-- 四表联查关系映射 -->
@@ -117,15 +113,6 @@
 	 WHERE e.`emplogenid` =#{eid} AND e.`emplogepaw`=#{epaw} AND e.`stateid`=1
   </select>
   
->>>>>>> branch 'master' of https://github.com/Gan-m/myDzw.git
-  <select id="login" resultType="com.accp.pojo.Employee">
-<<<<<<< HEAD
-  	SELECT * FROM `employee` e WHERE e.`emplogenid` =#{eid} AND e.`emplogepaw`=#{epaw}
-  </select>
-  
-=======
-  	SELECT * FROM `employee` e WHERE e.`emplogenid` =#{eid} AND e.`emplogepaw`=#{epaw}
-  </select>
 
   
   <!-- 今日提示 -->
@@ -133,7 +120,6 @@
 		SELECT * FROM tcount t WHERE t.`tcountime`=(SELECT DATE_FORMAT(NOW(),'%Y-%m-%d')); 
 	</select>
 
->>>>>>> branch 'master' of https://github.com/Gan-m/myDzw.git
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from employee
     where employeeid = #{employeeid,jdbcType=VARCHAR}

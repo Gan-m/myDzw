@@ -27,28 +27,15 @@ public class Servlet {
 	@Autowired
 	private starsBiz starsbiz;// 技工星际的biz
 
-	
-	/**
-	 * 查询所有星级
-
 	/**
 	 * 进入技工星级数据查询
 	 * @return
-	 *///@PostMapping("query")
-
-	/*
-	 * public PageInfo<Stars> query(@RequestBody pageinfo pinfo) { PageInfo<Stars>
-	 * list = starsbiz.query(pinfo.getPageNum(),pinfo.getPageSize());
-	 * 
-	 * }
 	 */
-//	public List<Stars> query() { 
-//		List<Stars> list = starsbiz.query();
-//		return list;
-//	}
-
-	
-
+	  @PostMapping("query")
+	 public PageInfo<Stars> query(@RequestBody pageinfo pinfo) { PageInfo<Stars>
+	 		list = starsbiz.query(pinfo.getPageNum(),pinfo.getPageSize());
+	 		return list;
+	  }
 	/**
 	 * 进入技工星级数据根据id查询
 	 * @param id
