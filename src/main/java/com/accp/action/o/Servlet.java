@@ -34,17 +34,18 @@ public class Servlet {
 	/**
 	 * 进入技工星级数据查询
 	 * @return
+	 *///@PostMapping("query")
+
+	/*
+	 * public PageInfo<Stars> query(@RequestBody pageinfo pinfo) { PageInfo<Stars>
+	 * list = starsbiz.query(pinfo.getPageNum(),pinfo.getPageSize());
+	 * 
+	 * }
 	 */
-	@PostMapping("query")
-
-	public PageInfo<Stars> query(@RequestBody pageinfo pinfo) { 
-		PageInfo<Stars> list = starsbiz.query(pinfo.getPageNum(),pinfo.getPageSize());
-
-
-	public List<Stars> query() { 
-		List<Stars> list = starsbiz.query();
-		return list;
-	}
+//	public List<Stars> query() { 
+//		List<Stars> list = starsbiz.query();
+//		return list;
+//	}
 
 	
 
