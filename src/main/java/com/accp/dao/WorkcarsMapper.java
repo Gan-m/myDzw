@@ -1,5 +1,8 @@
 package com.accp.dao;
 
+
+import java.util.List;
+
 import com.accp.pojo.Workcars;
 
 public interface WorkcarsMapper {
@@ -14,4 +17,8 @@ public interface WorkcarsMapper {
     int updateByPrimaryKeySelective(Workcars record);
 
     int updateByPrimaryKey(Workcars record);
+    
+    List<Workcars> queryWorkcars();
+    
+    
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.accp.pojo.Employee;
+import com.accp.pojo.Tcount;
 import com.accp.vo.q.EmpVo;
 
 public interface EmployeeMapper {
@@ -19,6 +20,12 @@ public interface EmployeeMapper {
     int updateByPrimaryKeySelective(Employee record);
 
     int updateByPrimaryKey(Employee record);
+    
+    /**
+     	* 今日推荐
+     * @return
+     */
+    Tcount getnewsts();
     
     List<EmpVo> select(@Param("fid") Integer fid,@Param("tj") String tj);
     

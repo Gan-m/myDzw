@@ -15,6 +15,23 @@
     from team
     where teamid = #{teamid,jdbcType=INTEGER}
   </select>
+   <select id="query" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from team where `fteamid`=0
+  </select>
+  
+  <select id="queryTeam_artisan" resultType="com.accp.vo.o.Team_artisan">
+  	SELECT * FROM `artisan` INNER JOIN  team ON artisan.`teamid`=team.`teamid`
+  </select>
+  
+   <select id="queryBanZu" resultMap="BaseResultMap">
+  	SELECT * FROM `team` WHERE `fteamid`!=0
+  </select>
+  
+   <select id="queryBanZuByid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	SELECT * FROM `team` WHERE `fteamid`=#{fteamid,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from team
     where teamid = #{teamid,jdbcType=INTEGER}

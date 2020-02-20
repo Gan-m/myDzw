@@ -30,4 +30,10 @@ public class Team {
     public void setFteamid(Integer fteamid) {
         this.fteamid = fteamid;
     }
+
+	@Override
+	public String toString() {
+		return "Team [teamid=" + teamid + ", teamname=" + teamname + ", fteamid=" + fteamid + "]";
+	}
+    
 }

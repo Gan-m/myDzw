@@ -3,11 +3,13 @@ package com.accp.action.o;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.accp.biz.o.starsBiz;
 import com.accp.biz.o.teamBiz;
 import com.accp.pojo.Stars;
@@ -15,81 +17,40 @@ import com.accp.pojo.Workcars;
 import com.accp.vo.o.Team_artisan;
 import com.accp.vo.o.pageinfo;
 import com.github.pagehelper.PageInfo;
+
 /**
- * 星级的Servlet
+ * 外勤的Servlet
  * @author Administrator
  *
  */
 @RestController
-@RequestMapping("/api/xj") // 命名空间
-public class Servlet {
-
+@RequestMapping("/api/wq") // 命名空间
+public class WaiCarServlert {
 	@Autowired
-	private starsBiz starsbiz;// 技工星际的biz
-
+	private teamBiz teambiz;// 外勤的biz
+	
 	/**
-	 * 进入技工星级数据查询
+	 * 进入外勤车辆数据查询
 	 * @return
 	 */
-	  @PostMapping("query")
-	 public PageInfo<Stars> query(@RequestBody pageinfo pinfo) { PageInfo<Stars>
-	 		list = starsbiz.query(pinfo.getPageNum(),pinfo.getPageSize());
-	 		return list;
-	  }
+	@PostMapping("query")
+	public PageInfo<Workcars> query(@RequestBody pageinfo pinfo) { 
+		PageInfo<Workcars> list = teambiz.queryWorkcars(pinfo.getPageNum(),pinfo.getPageSize());
+		return list;
+	}
 	/**
 	 * 进入技工星级数据根据id查询
 	 * @param id
 	 * @return
 	 */
 	@PostMapping("queryByid")
-	public Stars query(@RequestBody String id) {
+	public Workcars query(@RequestBody String id) {
 		Integer id2=Integer.parseInt(id);
-		Stars stars = starsbiz.queryByid(id2);
+		Workcars stars = teambiz.queryByid(id2);
 		return stars;
 	}
 	/**
-	 * 进入技工数据星级新增操作
-	 * @param sta
-	 * @return
-	 */
-	@PostMapping("add")
-	public Map<String, String> querykc(@RequestBody Stars sta) {
-		Map<String, String> message = new HashMap<String, String>();
-		Stars stars = starsbiz.queryByName(sta.getStarsname());
-		if (stars == null) {
-			int count = starsbiz.addStars(sta);
-			message.put("code", "200");
-			message.put("msg", "ok");
-			return message;
-		} else {
-			message.put("code", "500");
-			message.put("msg", "no");
-			return message;
-		}
-
-	}
-	/**
-	 * 进入技工数据星级修改操作
-	 * @param sta
-	 * @return
-	 */
-	@PostMapping("upd")
-	public Map<String, String> update(@RequestBody Stars sta) {
-		Map<String, String> message = new HashMap<String, String>();
-		int count = starsbiz.update(sta);
-		if (count > 0) {
-			message.put("code", "200");
-			message.put("msg", "ok");
-			return message;
-		} else {
-			message.put("code", "500");
-			message.put("msg", "no");
-			return message;
-		}
-
-	}
-	/**
-	 * 进入技工数据星级删除操作
+	 * 进入外勤车辆删除操作
 	 * @param sz
 	 * @return
 	 */
@@ -99,9 +60,52 @@ public class Servlet {
 		int count = 0;
 		for (String string : sz) {
 			Integer zhi = Integer.parseInt(string);
-			starsbiz.removeByidStars(zhi);
+			teambiz.removeWorkcars(zhi);
 			count++;
 		}
+		if (count > 0) {
+			System.out.println("结果值" + count);
+			message.put("code", "200");
+			message.put("msg", "ok");
+			return message;
+		} else {
+			message.put("code", "500");
+			message.put("msg", "no");
+			return message;
+		}
+
+	}
+	/**
+	 * 进入外勤车辆新增操作
+	 * @param sta
+	 * @return
+	 */
+	@PostMapping("add")
+	public Map<String, String> add(@RequestBody Workcars sta) {
+		System.out.println("进入新增："+sta);
+		Map<String, String> message = new HashMap<String, String>();
+			int count = teambiz.addWorkCar(sta);
+			if(count>0) {
+				message.put("code", "200");
+				message.put("msg", "ok");
+				return message;
+			}else{
+				message.put("code", "500");
+				message.put("msg", "no");
+				return message;
+			}
+
+	}
+	/**
+	 * 进入技工数据星级修改操作
+	 * @param sta
+	 * @return
+	 */
+	@PostMapping("upd")
+	public Map<String, String> update(@RequestBody Workcars wor) {
+		System.out.println("进入修改");
+		Map<String, String> message = new HashMap<String, String>();
+		int count = teambiz.update(wor);
 		if (count > 0) {
 			message.put("code", "200");
 			message.put("msg", "ok");
@@ -113,6 +117,4 @@ public class Servlet {
 		}
 
 	}
-	
-	
 }

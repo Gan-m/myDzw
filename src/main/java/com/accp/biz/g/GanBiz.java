@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.accp.dao.EmployeeMapper;
 import com.accp.pojo.Employee;
+import com.accp.pojo.Tcount;
 
 @Service
 public class GanBiz {
@@ -20,5 +21,13 @@ public class GanBiz {
 	 */
 	public Employee login(String eid,String epaw) {
 		return ebiz.login(eid, epaw);
+	}
+	
+	/**
+	 * 今日提示
+	 * @return
+	 */
+	public Tcount getnewsts() {
+		return ebiz.getnewsts();
 	}
 }

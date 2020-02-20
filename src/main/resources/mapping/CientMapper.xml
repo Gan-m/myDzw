@@ -24,6 +24,11 @@
     from client
     where clientno = #{clientno,jdbcType=VARCHAR}
   </select>
+   <select id="query" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from client
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from client
     where clientno = #{clientno,jdbcType=VARCHAR}
