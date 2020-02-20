@@ -19,6 +19,7 @@ import com.accp.pojo.Dimission;
 import com.accp.pojo.Employee;
 import com.accp.pojo.Property;
 import com.accp.pojo.Store;
+import com.accp.vo.q.ArtisanVo;
 import com.accp.vo.q.DimVo;
 import com.accp.vo.q.EmpVo;
 import com.github.pagehelper.PageInfo;
@@ -33,15 +34,15 @@ public class QAction {
 	 * 查询部门的子类
 	 */
 	@GetMapping("dep/deps")
-	public List<Department> queryDepAll(){
-		return depBiz.queryDepartment();
+	public List<Department> queryDepAll(int bmId){
+		return depBiz.queryDepartment(bmId);
 	}
 	/**
-	 * 查询部门的子类
+	 * 查询部门的子类分页
 	 */
 	@GetMapping("dep/depPage")
-	public PageInfo<Department> queryDepAllPage(int p,int s){
-		return depBiz.queryDepartmentPage(p,s);
+	public PageInfo<Department> queryDepAllPage(int p,int s,int bmId){
+		return depBiz.queryDepartmentPage(p,s,bmId);
 	}
 	/**
 	 * 修改岗位的查询
@@ -50,10 +51,22 @@ public class QAction {
 	 */
 	@GetMapping("dep/depCha")
 	public Department queryCha(String bh) {
-		if(depBiz.queryCha(bh)!=null) {
-			return depBiz.queryCha(bh);
+		return depBiz.queryCha(bh);
+	}
+	/**
+	 * 判断是否重复
+	 * @param departmentid
+	 * @return
+	 */
+	@GetMapping("dep/dan")
+	public Map<Object, String> queryDepartmentid(Integer departmentid) {
+		Map<Object, String> map=new HashMap<Object, String>();
+		if(depBiz.selectByPrimaryKey(departmentid)!=null) {
+			map.put("code", "200");
+		}else {
+			map.put("code", "300");
 		}
-		return null;
+		return map;
 	}
 	/**
 	 * 删除岗位
@@ -63,13 +76,43 @@ public class QAction {
 	@PostMapping("dep/del")
 	public Map<Object, String> addDep(@RequestBody Integer[] depid){
 		Map<Object, String> map=new HashMap<Object, String>();
+		int i=0;
 		for (Integer departmentid : depid) {
-			int i=depBiz.delDep(departmentid);
-			if(i>0) {
-				map.put("code", "200");
-			}else {
-				map.put("code", "300");
+			if(depBiz.selectEmpAndDep(departmentid)!=null||depBiz.selectDimAndDep(departmentid)!=null) {
+				continue;
 			}
+			if(depBiz.delDep(departmentid)>=1) {
+				i++;
+			}
+		}
+		if(i>=1) {
+			map.put("code", "200");
+			map.put("msg", "删除成功");
+		}else {
+			map.put("code", "400");
+			map.put("msg", "删除失败");
+		}
+		return map;
+	}
+	/**
+	 * 判断该职位是否被使用
+	 * @param departmentid
+	 * @return
+	 */
+	@PostMapping("dep/depAndEmpAndDim")
+	public Map<Object, String> selectEmpAndDimAndDep(@RequestBody Integer[] departmentid){
+		Map<Object, String> map=new HashMap<Object, String>();
+		Employee e=null;
+		Dimission m=null;
+		for (Integer depid : departmentid) {
+			e=depBiz.selectEmpAndDep(depid);
+			m=depBiz.selectDimAndDep(depid);
+			System.out.println("我的数据是："+depBiz.selectEmpAndDep(depid) +"and"+depBiz.selectDimAndDep(depid));
+		}
+		if(e!=null||m!=null){
+			map.put("code", "200");
+		}else {
+			map.put("code", "300");
 		}
 		return map;
 	}
@@ -109,7 +152,7 @@ public class QAction {
 	 * 查询部门的父类
 	 * @return
 	 */
-	@GetMapping("dep/dep")
+	@GetMapping("dep/depBm")
 	public List<Department> queryDep(){
 		return depBiz.queryDepartmentBM();
 	}
@@ -214,8 +257,8 @@ public class QAction {
 	 * @return
 	 */
 	@GetMapping("dim/pageDim")
-	public PageInfo<DimVo> pageDim(int p,int s){
-		return depBiz.pageDim(p, s);
+	public PageInfo<DimVo> pageDim(int p,int s,String depid){
+		return depBiz.pageDim(p, s,depid);
 	}
 	/**
 	 * 新增离职员工
@@ -271,6 +314,17 @@ public class QAction {
 			map.put("code", "300");
 		}
 		return map;
+	}
+	/**
+	 * 查询技工表，通讯名录
+	 * @param p
+	 * @param s
+	 * @param aid
+	 * @return
+	 */
+	@GetMapping("art/arts")
+	public PageInfo<ArtisanVo> selectTX(int p,int s,String aid){
+		return depBiz.selectTx(p, s, aid);
 	}
 
 }

@@ -26,6 +26,11 @@
     from artisan
     where artisanid = #{artisanid,jdbcType=VARCHAR}
   </select>
+  <select id="selectTX" resultType="com.accp.vo.q.ArtisanVo">
+	 	SELECT a.`artisanid`,t.`teamname`,s.`starsname`,`isgroup`,`aname`,`asex`,`aphone`,`loginaid`,`loginapaw`,`idcaid`,`araddress`,`craft`,`maintainBrand` FROM `artisan` a INNER JOIN stars s ON a.`starsid`=s.`starsid`
+		INNER JOIN team t ON t.teamid=a.teamid
+		WHERE `artisanid`like '%${aid}%'
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from artisan
     where artisanid = #{artisanid,jdbcType=VARCHAR}

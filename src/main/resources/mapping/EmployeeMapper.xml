@@ -43,7 +43,7 @@
 	    		and d.`depfaid`=#{fid}
 	    	</if>
 	    	<if test="tj!=''">
-	    		and e.empname=#{tj}
+	    		and e.empname like '%${tj}%'
 	    	</if>
 	    		and e.stateid=1
     	</where>

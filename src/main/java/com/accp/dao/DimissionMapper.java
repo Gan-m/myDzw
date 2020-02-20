@@ -20,5 +20,5 @@ public interface DimissionMapper {
 
     int updateByPrimaryKey(Dimission record);
     
-    List<DimVo> select();
+    List<DimVo> select(@Param("depid") String depid);
 }

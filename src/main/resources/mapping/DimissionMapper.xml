@@ -23,7 +23,7 @@
 	ON dim.`departmentid`=d.`departmentid`
 	LEFT JOIN employee e
 	ON dim.`departmentid`=e.`departmentid`
-	<!-- WHERE dim.`dimissionid`=#{dimissionid} -->
+	WHERE dim.`employeeid`like '%${depid}%'
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from dimission

@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.accp.pojo.Department;
+import com.accp.pojo.Dimission;
+import com.accp.pojo.Employee;
 
 public interface DepartmentMapper {
     int deleteByPrimaryKey(Integer departmentid);
@@ -15,7 +17,7 @@ public interface DepartmentMapper {
 
     Department selectByPrimaryKey(Integer departmentid);
     
-    List<Department> select();
+    List<Department> select(@Param("bmId") int bmId);
     
     List<Department> selectBm();
     
@@ -24,4 +26,8 @@ public interface DepartmentMapper {
     int updateByPrimaryKeySelective(Department record);
 
     int updateByPrimaryKey(Department record);
+    
+    Employee selectEmpAndDep(@Param("departmentid") Integer departmentid); 
+    
+    Dimission selectDimAndDep(@Param("departmentid") Integer departmentid); 
 }

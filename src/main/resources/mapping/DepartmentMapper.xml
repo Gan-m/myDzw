@@ -20,6 +20,9 @@
     <include refid="Base_Column_List" />
     from department
     where depfaid != 0
+    <if test="bmId != 0" >
+      and depfaid=#{bmId}
+     </if>
   </select>
   <select id="selectBm" resultMap="BaseResultMap">
     select 
@@ -32,6 +35,18 @@
     *
     from department
     where departmentid = #{bh}
+  </select>
+  <select id="selectEmpAndDep" resultType="com.accp.pojo.Employee">
+  	<!-- SELECT COUNT(*) FROM `department` d INNER JOIN `employee` e ON d.`departmentid`=e.`departmentid`
+	WHERE d.`departmentid`=#{departmentid} -->
+	select * from employee
+	WHERE `departmentid`=#{departmentid}
+  </select>
+  <select id="selectDimAndDep" resultType="com.accp.pojo.Dimission">
+  	<!-- SELECT COUNT(*) FROM `department` d INNER JOIN `dimission` m ON d.`departmentid`=m.`departmentid`
+	WHERE d.`departmentid`=#{departmentid} -->
+	select * from dimission
+	WHERE `departmentid`=#{departmentid}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from department

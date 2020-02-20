@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.accp.dao.ArtisanMapper;
 import com.accp.dao.DepartmentMapper;
 import com.accp.dao.DimissionMapper;
 import com.accp.dao.EmployeeMapper;
@@ -18,6 +19,7 @@ import com.accp.pojo.Dimission;
 import com.accp.pojo.Employee;
 import com.accp.pojo.Property;
 import com.accp.pojo.Store;
+import com.accp.vo.q.ArtisanVo;
 import com.accp.vo.q.DimVo;
 import com.accp.vo.q.EmpVo;
 import com.github.pagehelper.PageHelper;
@@ -38,6 +40,9 @@ public class DepartmentBiz {
 	//店面Dao
 	@Autowired
 	private StoreMapper storeDao;
+	//技工Dao
+	@Autowired
+	private ArtisanMapper artDao;
 	
 	//离职Dao
 	@Autowired
@@ -60,15 +65,15 @@ public class DepartmentBiz {
 	/**
 	 * 查询部门的子类
 	 */
-	public List<Department> queryDepartment(){
-		return dep.select();
+	public List<Department> queryDepartment(int bmId){
+		return dep.select(bmId);
 	}
 	/**
 	 * 查询部门的子类分页
 	 */
-	public PageInfo<Department> queryDepartmentPage(int p,int s){
+	public PageInfo<Department> queryDepartmentPage(int p,int s,int bmId){
 		PageHelper.startPage(p,s);
-		return new PageInfo<Department>(dep.select());
+		return new PageInfo<Department>(dep.select(bmId));
 	}
 	/**
 	 * 查询单个修改
@@ -77,6 +82,14 @@ public class DepartmentBiz {
 	 */
 	public Department queryCha(String bh) {
 		return dep.selectCha(bh);
+	}
+	/**
+	 * 判断是否重复
+	 * @param departmentid
+	 * @return
+	 */
+	public Department selectByPrimaryKey(Integer departmentid) {
+		return dep.selectByPrimaryKey(departmentid);
 	}
 	/**
 	 * 修改岗位
@@ -104,6 +117,17 @@ public class DepartmentBiz {
 	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED, readOnly = false)
 	public int delDep(Integer departmentid) {
 		return dep.deleteByPrimaryKey(departmentid);
+	}
+	/**
+	 * 判断该职位是否被使用
+	 * @param departmentid
+	 * @return
+	 */
+	public Employee selectEmpAndDep(Integer departmentid) {
+		return dep.selectEmpAndDep(departmentid);
+	}
+	public Dimission selectDimAndDep(Integer departmentid) {
+		return dep.selectDimAndDep(departmentid);
 	}
 	/**
 	 * 分页查询员工
@@ -180,9 +204,9 @@ public class DepartmentBiz {
 	 * @param s
 	 * @return
 	 */
-	public PageInfo<DimVo> pageDim(int p,int s){
+	public PageInfo<DimVo> pageDim(int p,int s,String depid){
 		PageHelper.startPage(p,s);
-		return new PageInfo<DimVo>(dimDao.select());
+		return new PageInfo<DimVo>(dimDao.select(depid));
 	}
 	/**
 	 * 新增离职
@@ -214,5 +238,13 @@ public class DepartmentBiz {
 	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED, readOnly = false)
 	public int delDim(Dimission dim) {
 		return dimDao.deleteByPrimaryKey(dim.getDimissionid());
+	}
+	/**
+	 * 查询记工表，通讯名录
+	 * @return
+	 */
+	public PageInfo<ArtisanVo> selectTx(int p,int s,String aid){
+		PageHelper.startPage(p,s);
+		return new PageInfo<ArtisanVo>(artDao.selectTX(aid));
 	}
 }

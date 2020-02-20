@@ -1,6 +1,11 @@
 package com.accp.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.accp.pojo.Artisan;
+import com.accp.vo.q.ArtisanVo;
 
 public interface ArtisanMapper {
     int deleteByPrimaryKey(String artisanid);
@@ -14,4 +19,6 @@ public interface ArtisanMapper {
     int updateByPrimaryKeySelective(Artisan record);
 
     int updateByPrimaryKey(Artisan record);
+    
+    List<ArtisanVo> selectTX(@Param("aid") String aid);
 }
